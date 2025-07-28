@@ -7,25 +7,25 @@ const About = () => {
       icon: <Award className="w-8 h-8" />,
       number: "10+",
       label: "Years of Excellence",
-      description: "Delivering outstanding results since 2014"
+      description: "Leading digital marketing solutions since 2014"
     },
     {
       icon: <Users className="w-8 h-8" />,
-      number: "500+",
-      label: "Events Executed",
-      description: "Successfully managed projects across industries"
+      number: "1000+",
+      label: "Strategic Partnerships",
+      description: "Successfully connecting advertisers and publishers"
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      number: "15+",
-      label: "Cities Covered",
-      description: "Pan-India presence with international reach"
+      number: "50+",
+      label: "Markets Reached",
+      description: "Global digital marketing presence"
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      number: "98%",
-      label: "Client Satisfaction",
-      description: "Proven track record of exceeding expectations"
+      number: "95%",
+      label: "Project Success Rate",
+      description: "Consistently exceeding digital marketing objectives"
     }
   ];
 
@@ -36,35 +36,36 @@ const About = () => {
           {/* Content with Animation */}
           <div className="animate-fade-in-left">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              About <span className="text-gradient">KRAYONS</span>
+              About <span className="text-gradient">KRAYONS GROUP</span>
             </h2>
             
             <div className="space-y-6 text-lg text-muted-foreground">
               <p className="animate-fade-in-up animate-delay-200">
-                Since 2014, <strong className="text-foreground">KRAYONS</strong> has been at the forefront of 
-                revolutionizing the events and marketing landscape. We are an integrated marketing group 
-                dedicated to breaking traditional barriers and creating extraordinary experiences.
+                <strong className="text-foreground">Krayons Group</strong> is your premier partner for 
+                <strong className="text-foreground"> digital marketing, integrated communication, and project-based solutions</strong>. 
+                We excel at forging strategic partnerships that effectively connect clients, facilitate seamless 
+                communication, and deliver exceptional project outcomes.
               </p>
               
               <p className="animate-fade-in-up animate-delay-300">
-                Our mission is to empower promising brands and startups with <strong className="text-foreground">fresh, 
-                strategic, and measurable</strong> event & marketing solutions that drive real business impact 
-                across India and international markets.
+                Our expertise spans <strong className="text-foreground">cutting-edge digital strategies</strong>, comprehensive 
+                communication across all channels, and tailored project management that consistently surpasses expectations. 
+                We don't just meet industry standards – <strong className="text-foreground">we set them</strong>.
               </p>
               
               <p className="animate-fade-in-up animate-delay-400">
-                We believe in the power of <strong className="text-foreground">strategic innovation</strong> combined 
-                with <strong className="text-foreground">data-driven insights</strong> to create campaigns that 
-                not only capture attention but convert audiences into loyal brand advocates.
+                Krayons is more than an affiliate marketing platform; we are <strong className="text-foreground">architects 
+                of successful communication strategies</strong> and project-based collaborations. Our team comprises seasoned 
+                professionals who understand the intricacies of the digital landscape.
               </p>
             </div>
 
-            {/* Vision Statement with Animation */}
+            {/* Mission Statement with Animation */}
             <div className="mt-8 p-6 bg-gradient-subtle rounded-lg border-l-4 border-primary animate-slide-up animate-delay-500 hover:shadow-card transition-shadow duration-300">
-              <h3 className="font-semibold text-foreground mb-2">Our Vision</h3>
+              <h3 className="font-semibold text-foreground mb-2">Our Mission</h3>
               <p className="text-muted-foreground">
-                To be the most trusted partner for brands looking to create meaningful connections 
-                through innovative events and experiential marketing that transcends traditional boundaries.
+                To facilitate the connection between advertisers and publishers, enabling them to attain their 
+                digital marketing objectives through our dynamic platform that broadens reach and monetizes online assets.
               </p>
             </div>
           </div>
