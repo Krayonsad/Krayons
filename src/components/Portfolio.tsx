@@ -3,9 +3,22 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ExternalLink, Calendar, MapPin, Users, Target, Lightbulb, TrendingUp, Sparkles, Award, Zap } from "lucide-react";
-import Autoplay from "embla-carousel-autoplay";
+import { useEffect, useRef } from "react";
 
 const Portfolio = () => {
+  const carouselRef = useRef<any>(null);
+
+  // Simple autoplay implementation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (carouselRef.current?.scrollNext) {
+        carouselRef.current.scrollNext();
+      }
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const caseStudies = [
     {
       title: "Tech Startup Product Launch",
@@ -58,7 +71,7 @@ const Portfolio = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-subtle">
+    <section id="portfolio" className="py-20 bg-gradient-subtle">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header with Animation */}
         <div className="text-center mb-16">
@@ -72,11 +85,7 @@ const Portfolio = () => {
 
         {/* Curved Carousel with Auto-scroll */}
         <Carousel
-          plugins={[
-            Autoplay({
-              delay: 4000,
-            }),
-          ]}
+          ref={carouselRef}
           opts={{
             align: "start",
             loop: true,
@@ -185,13 +194,6 @@ const Portfolio = () => {
           <CarouselPrevious className="hidden md:flex" />
           <CarouselNext className="hidden md:flex" />
         </Carousel>
-
-        {/* CTA with Pulse Animation */}
-        <div className="text-center mt-12 animate-fade-in-up animate-delay-600">
-          <Button className="btn-hero pulse-glow">
-            View Complete Portfolio
-          </Button>
-        </div>
       </div>
     </section>
   );

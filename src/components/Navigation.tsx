@@ -1,19 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
     { name: "About", href: "#about" },
@@ -31,12 +21,13 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleGetInTouch = () => {
+    window.location.href = 'mailto:krayonsad@gmail.com';
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
-      isScrolled 
-        ? 'bg-background/95 backdrop-blur-md shadow-card' 
-        : 'bg-transparent'
-    }`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -65,7 +56,7 @@ const Navigation = () => {
           {/* CTA Button - Desktop */}
           <div className="hidden lg:flex">
             <Button 
-              onClick={() => scrollToSection('#contact')}
+              onClick={handleGetInTouch}
               className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
               Get in Touch
@@ -92,7 +83,7 @@ const Navigation = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden">
-            <div className="bg-background/95 backdrop-blur-md border-t border-border">
+            <div className="bg-white border-t border-border">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navLinks.map((link, index) => (
                   <button
@@ -105,7 +96,7 @@ const Navigation = () => {
                 ))}
                 <div className="pt-4 pb-2">
                   <Button 
-                    onClick={() => scrollToSection('#contact')}
+                    onClick={handleGetInTouch}
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                   >
                     Get in Touch

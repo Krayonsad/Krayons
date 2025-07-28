@@ -2,8 +2,19 @@ import { Button } from "@/components/ui/button";
 import heroBackground from "@/assets/hero-background.jpg";
 
 const Hero = () => {
+  const handleGetInTouch = () => {
+    window.location.href = 'mailto:krayonsad@gmail.com';
+  };
+
+  const handleViewWork = () => {
+    const element = document.querySelector('#portfolio');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -41,11 +52,11 @@ const Hero = () => {
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8 animate-fade-in-up animate-delay-300">
-            <Button className="btn-hero text-lg group">
+            <Button onClick={handleGetInTouch} className="btn-hero text-lg group">
               Let's Collaborate
               <div className="ml-2 group-hover:translate-x-1 transition-transform">→</div>
             </Button>
-            <Button variant="outline" className="btn-outline-gradient text-white border-white/30 hover:bg-white/10 hover:scale-105 transition-all duration-300">
+            <Button onClick={handleViewWork} variant="outline" className="btn-outline-gradient text-black bg-white border-white hover:bg-white/90 hover:scale-105 transition-all duration-300">
               View Our Work
             </Button>
           </div>
@@ -74,6 +85,9 @@ const Hero = () => {
                 <video 
                   className="w-full h-auto" 
                   controls 
+                  autoPlay
+                  muted
+                  loop
                   poster="/placeholder.svg"
                   preload="metadata"
                 >
