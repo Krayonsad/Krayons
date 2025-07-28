@@ -25,17 +25,18 @@ const Hero = () => {
         <div className="space-y-8">
           {/* Main Tagline */}
           <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight animate-fade-in-up">
-            Breaking The{" "}
-            <span className="text-gradient animate-pulse">Barriers</span>{" "}
-            Of Events &{" "}
-            <span className="text-gradient animate-pulse" style={{animationDelay: '0.5s'}}>Marketing!</span>
+            Your Premier{" "}
+            <span className="text-gradient animate-pulse">Digital Marketing</span>{" "}
+            Partner For{" "}
+            <span className="text-gradient animate-pulse" style={{animationDelay: '0.5s'}}>Strategic Growth</span>
           </h1>
           
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed animate-fade-in-up animate-delay-200">
-            Since 2014, KRAYONS has empowered brands & startups with{" "}
-            <strong>Strategic Events</strong>, <strong>Experiential Marketing</strong> &{" "}
-            <strong>Data-driven Solutions</strong> across India and beyond.
+            Krayons Group excels at forging strategic partnerships that connect advertisers with publishers, 
+            delivering{" "}
+            <strong>Performance Advertising</strong>, <strong>Content Solutions</strong> &{" "}
+            <strong>Influencer Marketing</strong> with measurable results.
           </p>
           
           {/* CTA Buttons */}
@@ -56,12 +57,30 @@ const Hero = () => {
               <div className="text-gray-300 group-hover:text-white transition-colors">Years of Excellence</div>
             </div>
             <div className="text-center group animate-delay-100">
-              <div className="text-4xl font-bold text-gradient counter-animate hover:scale-110 transition-transform">500+</div>
-              <div className="text-gray-300 group-hover:text-white transition-colors">Successful Events</div>
+              <div className="text-4xl font-bold text-gradient counter-animate hover:scale-110 transition-transform">1000+</div>
+              <div className="text-gray-300 group-hover:text-white transition-colors">Strategic Partnerships</div>
             </div>
             <div className="text-center group animate-delay-200">
               <div className="text-4xl font-bold text-gradient counter-animate hover:scale-110 transition-transform">50+</div>
-              <div className="text-gray-300 group-hover:text-white transition-colors">Happy Clients</div>
+              <div className="text-gray-300 group-hover:text-white transition-colors">Markets Reached</div>
+            </div>
+          </div>
+          
+          {/* Video Section */}
+          <div className="pt-16 animate-fade-in-up animate-delay-500">
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-2xl font-semibold text-white mb-6">Watch Our Story</h3>
+              <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                <video 
+                  className="w-full h-auto" 
+                  controls 
+                  poster="/placeholder.svg"
+                  preload="metadata"
+                >
+                  <source src="https://krayons.co.in/wp-content/uploads/2025/02/An-Event-Company-2.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </div>
           </div>
         </div>

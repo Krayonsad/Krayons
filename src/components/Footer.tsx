@@ -13,18 +13,17 @@ const Footer = () => {
   ];
 
   const services = [
-    { name: "Strategic Event Experiences", href: "#" },
-    { name: "Experiential Marketing", href: "#" },
-    { name: "Data-driven Solutions", href: "#" },
-    { name: "International Collaborations", href: "#" },
-    { name: "Brand Activations", href: "#" }
+    { name: "Performance Advertising", href: "#services" },
+    { name: "Content Advertising", href: "#services" },
+    { name: "Influencer Advertising", href: "#services" },
+    { name: "Media Advertising", href: "#services" },
+    { name: "SMS Marketing", href: "#services" }
   ];
 
   const socialLinks = [
-    { icon: <Linkedin className="w-5 h-5" />, href: "#", label: "LinkedIn" },
-    { icon: <Twitter className="w-5 h-5" />, href: "#", label: "Twitter" },
-    { icon: <Instagram className="w-5 h-5" />, href: "#", label: "Instagram" },
-    { icon: <Facebook className="w-5 h-5" />, href: "#", label: "Facebook" }
+    { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/company/krayons-group/", label: "LinkedIn" },
+    { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/adkrayons/", label: "Instagram" },
+    { icon: <Facebook className="w-5 h-5" />, href: "https://www.facebook.com/AdKrayons/", label: "Facebook" }
   ];
 
   return (
@@ -34,25 +33,25 @@ const Footer = () => {
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <h3 className="text-2xl font-bold text-gradient mb-4">KRAYONS</h3>
+            <h3 className="text-2xl font-bold text-gradient mb-4">KRAYONS GROUP</h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Breaking the barriers of events & marketing since 2014. We empower brands with 
-              strategic experiences and data-driven solutions across India and beyond.
+              Premier partner for digital marketing, integrated communication, and project-based solutions. 
+              Connecting advertisers with publishers since 2014.
             </p>
             
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-muted-foreground">
                 <Mail className="w-4 h-4" />
-                <span className="text-sm">hello@krayons.in</span>
+                <span className="text-sm">mail@krayons.co.in</span>
               </div>
               <div className="flex items-center space-x-3 text-muted-foreground">
                 <Phone className="w-4 h-4" />
-                <span className="text-sm">+91 98765 43210</span>
+                <span className="text-sm">+91 11 41103510</span>
               </div>
               <div className="flex items-center space-x-3 text-muted-foreground">
                 <MapPin className="w-4 h-4" />
-                <span className="text-sm">Mumbai, India</span>
+                <span className="text-sm">Plot A-09, 711, ITL Towers, Netaji Subhash Place, Pitampura, Delhi 110034</span>
               </div>
             </div>
           </div>
@@ -95,7 +94,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Stay Connected</h4>
             <p className="text-muted-foreground text-sm mb-6">
-              Follow us for the latest insights on events, marketing trends, and success stories.
+              Follow us for the latest insights on digital marketing trends, affiliate marketing strategies, and success stories.
             </p>
             
             {/* Social Links */}
@@ -119,18 +118,15 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="py-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-muted-foreground text-sm">
-            © {currentYear} KRAYONS. All rights reserved.
+            © {currentYear} KRAYONS GROUP. All rights reserved.
           </div>
           
           <div className="flex space-x-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+            <a href="/privacy" className="text-muted-foreground hover:text-primary transition-smooth">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+            <a href="/terms" className="text-muted-foreground hover:text-primary transition-smooth">
               Terms of Service
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
-              Cookie Policy
             </a>
           </div>
         </div>
