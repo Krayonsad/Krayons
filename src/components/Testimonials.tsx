@@ -189,23 +189,6 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Stats Summary with Counter Animation */}
-        <div className="mt-16 bg-primary/5 rounded-2xl p-8 animate-slide-up animate-delay-800 hover:bg-primary/10 transition-colors duration-300">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="group">
-              <div className="text-3xl font-bold text-primary mb-2 counter-animate hover:scale-110 transition-transform cursor-default">4.9/5</div>
-              <div className="text-muted-foreground group-hover:text-foreground transition-colors">Average Client Rating</div>
-            </div>
-            <div className="group animate-delay-100">
-              <div className="text-3xl font-bold text-primary mb-2 counter-animate hover:scale-110 transition-transform cursor-default">100%</div>
-              <div className="text-muted-foreground group-hover:text-foreground transition-colors">Client Retention Rate</div>
-            </div>
-            <div className="group animate-delay-200">
-              <div className="text-3xl font-bold text-primary mb-2 counter-animate hover:scale-110 transition-transform cursor-default">50+</div>
-              <div className="text-muted-foreground group-hover:text-foreground transition-colors">Happy Clients</div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

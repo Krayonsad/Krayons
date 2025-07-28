@@ -98,24 +98,6 @@ const WhyChooseUs = () => {
           ))}
         </div>
 
-        {/* Achievements Bar with Animation */}
-        <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-white animate-scale-in animate-delay-400 hover:shadow-2xl transition-shadow duration-300">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="text-center animate-bounce-in" style={{animationDelay: `${index * 0.1 + 0.5}s`}}>
-                <div className="text-3xl md:text-4xl font-bold mb-2 counter-animate hover:scale-110 transition-transform cursor-default">
-                  {achievement.number}
-                </div>
-                <div className="font-semibold mb-1 hover:scale-105 transition-transform">
-                  {achievement.label}
-                </div>
-                <div className="text-sm text-white/80 hover:text-white transition-colors">
-                  {achievement.description}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Key Differentiators with Wave Animation */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
