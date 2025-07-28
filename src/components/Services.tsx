@@ -2,48 +2,48 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import strategicEvents from "@/assets/strategic-events.jpg";
 import experientialMarketing from "@/assets/experiential-marketing.jpg";
 import dataSolutions from "@/assets/data-solutions.jpg";
-import { Lightbulb, Target, BarChart3, Globe, Users, Zap } from "lucide-react";
+import { Target, Users, MessageSquare, Radio, Database, TrendingUp, Globe, Mail, FileText } from "lucide-react";
 
 const Services = () => {
   const services = [
     {
       icon: <Target className="w-8 h-8" />,
-      title: "Strategic Event Experiences",
-      description: "Crafting memorable experiences that align with your brand objectives and drive meaningful engagement.",
+      title: "Performance Advertising",
+      description: "Payment only for successful transactions like leads, sales, downloads, and applications. Risk-free digital marketing with measurable outcomes.",
       image: strategicEvents,
-      features: ["Brand Activations", "Corporate Events", "Product Launches", "Conference Management"]
+      features: ["Cost per Lead", "Cost per Sale", "Cost per Download", "Cost per Application"]
     },
     {
-      icon: <Lightbulb className="w-8 h-8" />,
-      title: "Experiential Marketing",
-      description: "Innovative campaigns that create emotional connections between brands and their audiences.",
+      icon: <FileText className="w-8 h-8" />,
+      title: "Content Advertising",
+      description: "Tailored content management solutions that streamline workflow, drive engagement, and achieve marketing goals.",
       image: experientialMarketing,
-      features: ["Interactive Experiences", "Pop-up Events", "Brand Storytelling", "Customer Journey Mapping"]
+      features: ["Content Marketing", "Content Websites", "Content Strategy", "Native Advertising"]
     },
     {
-      icon: <BarChart3 className="w-8 h-8" />,
-      title: "Data-driven Solutions",
-      description: "Measurable strategies backed by analytics to optimize your marketing ROI and event success.",
+      icon: <Users className="w-8 h-8" />,
+      title: "Influencer Advertising",
+      description: "Collaborate with diverse influencers and content creators to connect with new audiences and achieve positive ROI.",
       image: dataSolutions,
-      features: ["Performance Analytics", "ROI Tracking", "Audience Insights", "Strategy Optimization"]
+      features: ["Campaign Management", "ROI Focused", "Diverse Network", "Full Lifecycle Support"]
     }
   ];
 
   const additionalServices = [
     {
-      icon: <Globe className="w-6 h-6" />,
-      title: "International Collaborations",
-      description: "Global partnerships for expanding your reach across international markets."
+      icon: <Radio className="w-6 h-6" />,
+      title: "Media Advertising",
+      description: "Comprehensive media agency services across all advertising channels - online, airport, newspaper, magazine, outdoor, radio, and television."
     },
     {
-      icon: <Users className="w-6 h-6" />,
-      title: "Integrated Campaigns",
-      description: "Multi-channel approaches that unify your brand message across all touchpoints."
+      icon: <Database className="w-6 h-6" />,
+      title: "SMS Marketing (India Only)",
+      description: "70 million contacts database with advanced SMS marketing capabilities, A2P integration, 2-way SMS, and global connectivity."
     },
     {
-      icon: <Zap className="w-6 h-6" />,
-      title: "Innovation Consulting",
-      description: "Forward-thinking strategies to keep your brand ahead of industry trends."
+      icon: <Mail className="w-6 h-6" />,
+      title: "Email & Social Media",
+      description: "Strategic email marketing campaigns and social media management to maximize your digital reach and engagement."
     }
   ];
 
@@ -53,10 +53,10 @@ const Services = () => {
         {/* Header with Animation */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 animate-fade-in-up">
-            Our <span className="text-gradient">Expertise</span>
+            Our <span className="text-gradient">Services</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up animate-delay-200">
-            We specialize in creating breakthrough experiences that elevate brands and drive measurable results through strategic innovation.
+            Comprehensive digital marketing solutions that connect advertisers with publishers, driving measurable results through strategic partnerships and innovative campaigns.
           </p>
         </div>
 
