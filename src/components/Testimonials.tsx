@@ -1,6 +1,6 @@
+import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
-import brandLogosCollection from "@/assets/brand-logos-collection.png";
 
 const Testimonials = () => {
   const testimonials = [
@@ -49,80 +49,96 @@ const Testimonials = () => {
   ];
 
   const brandLogos = [
-    { name: "TechVantage Solutions", category: "Technology" },
-    { name: "Luxe Fashion International", category: "Fashion" },
-    { name: "GreenTech Innovations", category: "Sustainability" },
-    { name: "Global Dynamics Corp", category: "Corporate" },
-    { name: "EcoBeauty Brand", category: "Beauty" },
-    { name: "Innovation Labs", category: "Research" },
-    { name: "StartupAccelerator", category: "Venture Capital" },
-    { name: "FutureCorps", category: "Technology" },
-    { name: "MetaVision Inc", category: "AR/VR" },
-    { name: "CloudFirst Technologies", category: "Cloud Computing" },
-    { name: "NextGen Automotive", category: "Automotive" },
-    { name: "BioHealth Solutions", category: "Healthcare" },
-    { name: "FinanceForward", category: "FinTech" },
-    { name: "RetailRevolution", category: "E-commerce" },
-    { name: "EduTech Pioneer", category: "Education" },
-    { name: "SpaceAge Industries", category: "Aerospace" }
+    { 
+      name: "Ministry of Jal Shakti", 
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/200px-Emblem_of_India.svg.png",
+      category: "Government" 
+    },
+    { 
+      name: "Bharti Airtel", 
+      logo: "https://images.seeklogo.com/logo-png/16/2/airtel-logo-png_seeklogo-168291.png",
+      category: "Telecommunications" 
+    },
+    { 
+      name: "Mahindra COMVIVA", 
+      logo: "https://1000logos.net/wp-content/uploads/2020/04/Mahindra-Logo-2012.png",
+      category: "Technology Solutions" 
+    },
+    { 
+      name: "MACROKIOSK", 
+      logo: "https://macrokiosk.com/assets/img/og-img/og-image-macrokiosk.png",
+      category: "Digital Payments" 
+    },
+    { 
+      name: "India Tourism Development Corporation", 
+      logo: "https://e7.pngegg.com/pngimages/423/867/png-clipart-india-tourism-development-corporation-limited-company-civil-engineering-india-brand-equity-foundation-cost-effective-company-text.png",
+      category: "Tourism" 
+    },
+    { 
+      name: "Namami Gange", 
+      logo: "https://nmcg.nic.in/logo/Namami%20Gange%20Logo_Hindi.jpg",
+      category: "Environmental Initiative" 
+    },
+    { 
+      name: "DigiTantra", 
+      logo: "https://cdn.prod.website-files.com/64b3e49ec17f22371194291a/65531c82fd58535248724d82_OG-Image.png",
+      category: "Digital Solutions" 
+    },
+    { 
+      name: "Mobi2Fun", 
+      logo: "https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1450613668/s2m8wz2zafohudracjsz.png",
+      category: "Mobile Technology" 
+    },
+    { 
+      name: "Infobip", 
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5qXUM4Q3p99Rk6ENjtjMbaJYGFsbwtuYUOw&s",
+      category: "Communications Platform" 
+    },
+    { 
+      name: "Ministry of Urban Development", 
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS91M-t3DBHQyuMKjVybiqiXOrhB1dTqADNKA&s",
+      category: "Government" 
+    },
+    { 
+      name: "Osho World", 
+      logo: "https://images.seeklogo.com/logo-png/10/1/osho-logo-png_seeklogo-104432.png",
+      category: "Spiritual & Wellness" 
+    },
+    { 
+      name: "WOTR", 
+      logo: "https://projectheena.com/uploads/ngo/31147029532871/profileImage/images/wotr-pune.jpg",
+      category: "Water & Development" 
+    },
+    { 
+      name: "Google", 
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+      category: "Technology" 
+    },
+    { 
+      name: "Apple", 
+      logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+      category: "Technology" 
+    },
+    { 
+      name: "Amazon", 
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+      category: "E-commerce" 
+    }
   ];
 
   return (
-    <section className="py-20 bg-gradient-subtle">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header with Animation */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 animate-fade-in-up">
-            What Our <span className="text-gradient">Clients Say</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up animate-delay-200">
-            Don't just take our word for it. Here's what industry leaders have to say about their experience working with KRAYONS.
-          </p>
-        </div>
+    <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50/40 to-purple-50/30 overflow-hidden">
+      {/* Subtle Background Decorations */}
+      <div className="absolute top-20 left-10 w-2 h-2 bg-blue-500 rounded-full animate-ping opacity-50"></div>
+      <div className="absolute top-40 right-20 w-3 h-3 bg-purple-500 rounded-full animate-pulse opacity-40"></div>
+      <div className="absolute bottom-20 left-20 w-1 h-1 bg-cyan-500 rounded-full animate-bounce opacity-60"></div>
+      <div className="absolute bottom-40 right-10 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-30" style={{animationDelay: '1s'}}></div>
 
-        {/* Testimonials Grid with Staggered Animation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="animate-fade-in-up" style={{animationDelay: `${index * 0.15}s`}}>
-              <Card className="card-hover card-tilt shadow-card border-0 bg-card/80 backdrop-blur-sm group hover:bg-card transition-all duration-300 h-full">
-                <CardContent className="p-6 flex flex-col h-full">
-                  {/* Quote Icon */}
-                  <div className="mb-4">
-                    <Quote className="w-8 h-8 text-primary/40 group-hover:text-primary/60 transition-colors" />
-                  </div>
-
-                  {/* Rating with Animation */}
-                  <div className="flex space-x-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className="w-4 h-4 fill-primary text-primary hover:scale-125 transition-transform cursor-default"
-                        style={{transitionDelay: `${i * 0.1}s`}}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Quote */}
-                  <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow group-hover:text-foreground transition-colors">
-                    "{testimonial.quote}"
-                  </p>
-
-                  {/* Author with Hover Effect */}
-                  <div className="border-t pt-4 group-hover:border-primary/20 transition-colors">
-                    <div className="font-semibold text-foreground group-hover:text-primary transition-colors">{testimonial.author}</div>
-                    <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{testimonial.position}</div>
-                    <div className="text-sm text-primary font-medium group-hover:scale-105 transition-transform origin-left">{testimonial.company}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
-        </div>
-
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Three-Layer Infinite Scrolling Brand Logos */}
-        <div className="text-center animate-fade-in-up animate-delay-600 overflow-hidden">
-          <h3 className="text-2xl font-semibold text-foreground mb-12">
-            Trusted by <span className="text-gradient">Leading Brands</span>
+        <div className="text-center animate-fade-in-up animation-delay-[600ms] animation-fill-mode-both overflow-hidden">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-12">
+            Trusted by <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">Leading Brands</span>
           </h3>
           
           {/* First Row - Scroll Right */}
@@ -131,15 +147,28 @@ const Testimonials = () => {
               {[...brandLogos.slice(0, 6), ...brandLogos.slice(0, 6)].map((brand, index) => (
                 <div 
                   key={`row1-${index}`}
-                  className="flex-shrink-0 bg-card/60 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-lg hover:bg-card hover:scale-105 transition-all duration-300 group cursor-pointer border border-border/50"
+                  className="flex-shrink-0 bg-white/80 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-lg hover:bg-white hover:scale-105 transition-all duration-300 group cursor-pointer border border-gray-200/50 min-w-[180px]"
                 >
-                  <div className="text-center">
-                    <div className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors">
-                      {brand.name}
+                  <div className="flex items-center justify-center h-16 mb-2">
+                    <img 
+                      src={brand.logo} 
+                      alt={`${brand.name} logo`}
+                      className="max-h-12 max-w-24 object-contain filter group-hover:brightness-110 transition-all duration-300"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
+                        if (fallback) fallback.style.display = 'block';
+                      }}
+                    />
+                    <div className="logo-fallback hidden text-center">
+                      <div className="text-gray-900 font-semibold text-sm group-hover:text-blue-600 transition-colors">
+                        {brand.name}
+                      </div>
                     </div>
-                    <div className="text-xs text-muted-foreground mt-1 group-hover:text-primary/80 transition-colors">
-                      {brand.category}
-                    </div>
+                  </div>
+                  <div className="text-xs text-gray-600 text-center group-hover:text-blue-600 transition-colors">
+                    {brand.category}
                   </div>
                 </div>
               ))}
@@ -152,15 +181,28 @@ const Testimonials = () => {
               {[...brandLogos.slice(6, 12), ...brandLogos.slice(6, 12)].map((brand, index) => (
                 <div 
                   key={`row2-${index}`}
-                  className="flex-shrink-0 bg-gradient-to-r from-primary/5 to-secondary/5 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-lg hover:from-primary/10 hover:to-secondary/10 hover:scale-105 transition-all duration-300 group cursor-pointer border border-primary/20"
+                  className="flex-shrink-0 bg-gradient-to-r from-blue-50/80 to-purple-50/80 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-lg hover:from-blue-50 hover:to-purple-50 hover:scale-105 transition-all duration-300 group cursor-pointer border border-blue-200/50 min-w-[180px]"
                 >
-                  <div className="text-center">
-                    <div className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors">
-                      {brand.name}
+                  <div className="flex items-center justify-center h-16 mb-2">
+                    <img 
+                      src={brand.logo} 
+                      alt={`${brand.name} logo`}
+                      className="max-h-12 max-w-24 object-contain filter group-hover:brightness-110 transition-all duration-300"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
+                        if (fallback) fallback.style.display = 'block';
+                      }}
+                    />
+                    <div className="logo-fallback hidden text-center">
+                      <div className="text-gray-900 font-semibold text-sm group-hover:text-purple-600 transition-colors">
+                        {brand.name}
+                      </div>
                     </div>
-                    <div className="text-xs text-muted-foreground mt-1 group-hover:text-primary/80 transition-colors">
-                      {brand.category}
-                    </div>
+                  </div>
+                  <div className="text-xs text-gray-600 text-center group-hover:text-purple-600 transition-colors">
+                    {brand.category}
                   </div>
                 </div>
               ))}
@@ -173,15 +215,28 @@ const Testimonials = () => {
               {[...brandLogos.slice(12, 16), ...brandLogos.slice(0, 4), ...brandLogos.slice(12, 16), ...brandLogos.slice(0, 4)].map((brand, index) => (
                 <div 
                   key={`row3-${index}`}
-                  className="flex-shrink-0 bg-gradient-to-br from-card/80 via-card/60 to-card/40 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-lg hover:from-card hover:to-card/80 hover:scale-105 transition-all duration-300 group cursor-pointer border border-border/30"
+                  className="flex-shrink-0 bg-gradient-to-br from-white/90 via-gray-50/80 to-blue-50/60 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-lg hover:from-white hover:to-blue-50/80 hover:scale-105 transition-all duration-300 group cursor-pointer border border-gray-300/40 min-w-[180px]"
                 >
-                  <div className="text-center">
-                    <div className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors">
-                      {brand.name}
+                  <div className="flex items-center justify-center h-16 mb-2">
+                    <img 
+                      src={brand.logo} 
+                      alt={`${brand.name} logo`}
+                      className="max-h-12 max-w-24 object-contain filter group-hover:brightness-110 transition-all duration-300"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
+                        if (fallback) fallback.style.display = 'block';
+                      }}
+                    />
+                    <div className="logo-fallback hidden text-center">
+                      <div className="text-gray-900 font-semibold text-sm group-hover:text-cyan-600 transition-colors">
+                        {brand.name}
+                      </div>
                     </div>
-                    <div className="text-xs text-muted-foreground mt-1 group-hover:text-primary/80 transition-colors">
-                      {brand.category}
-                    </div>
+                  </div>
+                  <div className="text-xs text-gray-600 text-center group-hover:text-cyan-600 transition-colors">
+                    {brand.category}
                   </div>
                 </div>
               ))}
