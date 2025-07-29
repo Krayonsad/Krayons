@@ -55,14 +55,18 @@ const Navigation = () => {
               onClick={handleLogoClick}
               className="group relative text-2xl font-bold transition-all duration-500 transform hover:scale-110"
             >
-              <span className="relative z-10 text-3xl">
-                <span className="text-orange-600 hover:text-blue-900 transition-colors duration-300">K</span>
-                <span className="text-purple-800 hover:text-green-900 transition-colors duration-300">R</span>
-                <span className="text-yellow-500 hover:text-yellow-600 transition-colors duration-300">A</span>
-                <span className="text-blue-800 hover:text-violet-700 transition-colors duration-300">Y</span>
-                <span className="text-red-800 hover:text-red-700 transition-colors duration-300">O</span>
-                <span className="text-pink-500 hover:text-pink-600 transition-colors duration-300">N</span>
-                <span className="text-green-700 hover:text-cyan-600 transition-colors duration-300">S</span>
+              <span 
+                className="relative z-10 bg-gradient-to-r from-orange-600 via-blue-800 via-yellow-500 via-violet-600 via-red-600 via-pink-500 to-cyan-500 bg-clip-text text-transparent hover:from-orange-700 hover:via-blue-900 hover:via-yellow-600 hover:via-violet-700 hover:via-red-700 hover:via-pink-600 hover:to-cyan-600 transition-all duration-500 text-3xl"
+                style={{
+                  // Fallback for browsers that don't support background-clip: text
+                  color: '#ea580c',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundImage: 'linear-gradient(to right, #ea580c, #1e40af, #eab308, #7c3aed, #dc2626, #ec4899, #06b6d4)',
+                  backgroundClip: 'text'
+                }}
+              >
+                KRAYONS
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-green-500/10 via-yellow-500/10 to-cyan-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 ease-out -z-10"></div>
             </button>
