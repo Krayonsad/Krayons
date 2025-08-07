@@ -114,12 +114,24 @@ const Services = () => {
     return () => window.removeEventListener('scroll', throttledScroll);
   }, [services.length]);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+  
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+  return () => window.removeEventListener('resize', checkMobile);
+}, []);
+
   return (
     <section 
-      ref={sectionRef}
-      className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden"
-      style={{ minHeight: '300vh' }}
-    >
+  ref={sectionRef}
+  className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden"
+  style={{ minHeight: isMobile ? 'auto' : '300vh' }}
+>
       {/* 3D Background - Consistent with other components */}
       <ThreeDBackground 
         opacity={0.25}
@@ -145,7 +157,8 @@ const Services = () => {
       </div>
 
       {/* Enhanced Floating 3D Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+     {/* Enhanced Floating 3D Elements */}
+<div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
         {[...Array(12)].map((_, i) => (
           <div
             key={i}
@@ -192,7 +205,7 @@ const Services = () => {
         <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-br from-cyan-200/10 to-blue-300/10 transform rotate-45 blur-lg animate-spin" style={{ animationDuration: '20s' }} />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
         {/* Enhanced Header with 3D effects */}
         <div className={`text-center mb-24 transform transition-all duration-1000 ${
           isInView ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95'
@@ -202,7 +215,7 @@ const Services = () => {
             <span className="text-sm font-medium text-gray-600 tracking-wide uppercase">Professional Services</span>
           </div>
           
-          <h2 className="text-6xl font-bold mb-6 leading-tight hover:scale-105 transition-transform duration-300">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight hover:scale-105 transition-transform duration-300">
             <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
               Your Success
             </span>
@@ -212,13 +225,14 @@ const Services = () => {
             </span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light px-4">
             A comprehensive approach to transforming your vision into measurable results through strategic excellence and innovative execution.
           </p>
         </div>
 
         {/* Professional Timeline with Split Layout */}
-        <div className="max-w-6xl mx-auto">
+        {/* Professional Timeline with Split Layout - Desktop Only */}
+<div className="max-w-6xl mx-auto hidden md:block">
           <div className="relative">
             {/* Enhanced Timeline Spine with 3D depth */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-transparent via-gray-300 to-transparent shadow-lg" />
@@ -499,6 +513,33 @@ const Services = () => {
             ))}
           </div>
         </div>
+
+{/* Mobile Card Layout */}
+<div className="block md:hidden max-w-lg mx-auto space-y-6">
+  {services.map((service, index) => (
+    <div key={service.id} className="relative">
+      {/* Mobile Card */}
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-200/50">
+        <div className="flex items-center mb-4">
+          <div className={`w-12 h-12 rounded-xl ${service.bgColor} flex items-center justify-center text-xl mr-4 shadow-lg border border-gray-100`}>
+            {service.icon}
+          </div>
+          <div className="flex-1">
+            <h3 className={`text-lg font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent`}>
+              {service.title}
+            </h3>
+            <div className={`inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full mt-1 bg-gradient-to-r ${service.accentColor} text-white`}>
+              {service.stats}
+            </div>
+          </div>
+        </div>
+        <p className="text-gray-600 leading-relaxed text-sm font-light">
+          {service.description}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
 
         {/* Additional 3D floating elements specific to services */}
         <div className="absolute top-32 left-16 w-4 h-4 bg-blue-500/20 rounded-full animate-ping opacity-50"></div>
