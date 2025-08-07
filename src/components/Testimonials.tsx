@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
+import ThreeDBackground from "@/components/3d/ThreeDBackground";
 
 const Testimonials = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
   const testimonials = [
     {
       quote: "KRAYONS transformed our product launch from a simple announcement to an unforgettable experience. Their strategic approach and attention to detail resulted in 300% higher engagement than our previous launches.",
@@ -126,18 +130,102 @@ const Testimonials = () => {
     }
   ];
 
+  useEffect(() => {
+    // Intersection Observer for visibility
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (observer && sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50/40 to-purple-50/30 overflow-hidden">
-      {/* Subtle Background Decorations */}
-      <div className="absolute top-20 left-10 w-2 h-2 bg-blue-500 rounded-full animate-ping opacity-50"></div>
-      <div className="absolute top-40 right-20 w-3 h-3 bg-purple-500 rounded-full animate-pulse opacity-40"></div>
-      <div className="absolute bottom-20 left-20 w-1 h-1 bg-cyan-500 rounded-full animate-bounce opacity-60"></div>
-      <div className="absolute bottom-40 right-10 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-30" style={{animationDelay: '1s'}}></div>
+    <section ref={sectionRef} className="relative py-20 bg-background overflow-hidden">
+      {/* 3D Background */}
+      <ThreeDBackground 
+        opacity={0.25}
+        particleCount={120}
+        shapeCount={15}
+        colorScheme="mixed"
+        animationSpeed={0.8}
+        className={`opacity-25 ${isVisible ? 'blur-0' : 'blur-sm'} transition-all duration-1000`}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
+        {/* Header Section */}
+        <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            What Our <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent animate-pulse">Clients Say</span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Don't just take our word for it. Here's what industry leaders say about their experience with KRAYONS GROUP.
+          </p>
+        </div>
+
+        {/* Testimonials Grid */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          {testimonials.map((testimonial, index) => (
+            <div 
+              key={index}
+              className={`transition-all duration-700 transform ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}
+              style={{
+                transitionDelay: `${index * 150 + 500}ms`,
+              }}
+            >
+              <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-sm hover:from-blue-50/90 hover:to-purple-50/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transform-gpu h-full">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-purple-400/0 to-cyan-400/0 group-hover:from-blue-400/5 group-hover:via-purple-400/5 group-hover:to-cyan-400/5 transition-all duration-500"></div>
+                <CardContent className="p-6 relative z-10 flex flex-col h-full">
+                  <div className="flex items-center mb-4">
+                    <Quote className="w-6 h-6 text-blue-500 group-hover:text-purple-500 transition-colors duration-300" />
+                    <div className="flex ml-auto">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 group-hover:scale-110 transition-transform duration-300" style={{transitionDelay: `${i * 50}ms`}} />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <blockquote className="text-muted-foreground mb-6 flex-grow group-hover:text-foreground transition-colors duration-300">
+                    "{testimonial.quote}"
+                  </blockquote>
+                  
+                  <div className="mt-auto">
+                    <div className="font-semibold text-foreground group-hover:text-blue-600 transition-colors duration-300">
+                      {testimonial.author}
+                    </div>
+                    <div className="text-sm text-muted-foreground group-hover:text-purple-600 transition-colors duration-300">
+                      {testimonial.position}
+                    </div>
+                    <div className="text-sm font-medium text-blue-600 group-hover:text-cyan-600 transition-colors duration-300">
+                      {testimonial.company}
+                    </div>
+                  </div>
+                </CardContent>
+                
+                {/* Animated border */}
+                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 p-[1px]">
+                    <div className="w-full h-full rounded-lg bg-white/90"></div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          ))}
+        </div>
+
         {/* Three-Layer Infinite Scrolling Brand Logos */}
-        <div className="text-center animate-fade-in-up animation-delay-[600ms] animation-fill-mode-both overflow-hidden">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-12">
+        <div className={`text-center transition-all duration-1000 delay-600 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} overflow-hidden`}>
+          <h3 className="text-2xl font-semibold text-foreground mb-12">
             Trusted by <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">Leading Brands</span>
           </h3>
           
@@ -162,12 +250,12 @@ const Testimonials = () => {
                       }}
                     />
                     <div className="logo-fallback hidden text-center">
-                      <div className="text-gray-900 font-semibold text-sm group-hover:text-blue-600 transition-colors">
+                      <div className="text-foreground font-semibold text-sm group-hover:text-blue-600 transition-colors">
                         {brand.name}
                       </div>
                     </div>
                   </div>
-                  <div className="text-xs text-gray-600 text-center group-hover:text-blue-600 transition-colors">
+                  <div className="text-xs text-muted-foreground text-center group-hover:text-blue-600 transition-colors">
                     {brand.category}
                   </div>
                 </div>
@@ -196,12 +284,12 @@ const Testimonials = () => {
                       }}
                     />
                     <div className="logo-fallback hidden text-center">
-                      <div className="text-gray-900 font-semibold text-sm group-hover:text-purple-600 transition-colors">
+                      <div className="text-foreground font-semibold text-sm group-hover:text-purple-600 transition-colors">
                         {brand.name}
                       </div>
                     </div>
                   </div>
-                  <div className="text-xs text-gray-600 text-center group-hover:text-purple-600 transition-colors">
+                  <div className="text-xs text-muted-foreground text-center group-hover:text-purple-600 transition-colors">
                     {brand.category}
                   </div>
                 </div>
@@ -230,12 +318,12 @@ const Testimonials = () => {
                       }}
                     />
                     <div className="logo-fallback hidden text-center">
-                      <div className="text-gray-900 font-semibold text-sm group-hover:text-cyan-600 transition-colors">
+                      <div className="text-foreground font-semibold text-sm group-hover:text-cyan-600 transition-colors">
                         {brand.name}
                       </div>
                     </div>
                   </div>
-                  <div className="text-xs text-gray-600 text-center group-hover:text-cyan-600 transition-colors">
+                  <div className="text-xs text-muted-foreground text-center group-hover:text-cyan-600 transition-colors">
                     {brand.category}
                   </div>
                 </div>
@@ -243,8 +331,13 @@ const Testimonials = () => {
             </div>
           </div>
         </div>
-
       </div>
+      
+      {/* Additional floating elements - consistent with other components */}
+      <div className="absolute top-20 left-10 w-2 h-2 bg-blue-500 rounded-full animate-ping opacity-50"></div>
+      <div className="absolute top-40 right-20 w-3 h-3 bg-purple-500 rounded-full animate-pulse opacity-40"></div>
+      <div className="absolute bottom-20 left-20 w-1 h-1 bg-cyan-500 rounded-full animate-bounce opacity-60"></div>
+      <div className="absolute bottom-40 right-10 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-30" style={{animationDelay: '1s'}}></div>
     </section>
   );
 };

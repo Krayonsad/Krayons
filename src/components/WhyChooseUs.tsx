@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Trophy, Target, Rocket, Users, BarChart3 } from "lucide-react";
+import ThreeDBackground from "@/components/3d/ThreeDBackground";
 
 const WhyChooseUs = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   const reasons = [
@@ -80,16 +81,26 @@ const WhyChooseUs = () => {
     <section 
       ref={sectionRef}
       id="why-us" 
-      className="py-20 bg-gray-50 relative z-10" 
+      className="py-20 bg-background relative overflow-hidden" 
       style={{ minHeight: "100vh" }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      {/* 3D Background */}
+      <ThreeDBackground 
+        opacity={0.3}
+        particleCount={100}
+        shapeCount={10}
+        colorScheme="purple"
+        animationSpeed={0.9}
+        className={`opacity-30 ${isVisible ? 'blur-0' : 'blur-sm'} transition-all duration-1000`}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header with Animation */}
         <div className="text-center mb-16">
-          <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 mb-6 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            Why Choose <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">KRAYONS</span>
+          <h2 className={`text-4xl md:text-5xl font-bold text-foreground mb-6 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            Why Choose <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent animate-pulse">KRAYONS</span>
           </h2>
-          <p className={`text-xl text-gray-600 max-w-3xl mx-auto transition-all duration-1000 delay-200 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <p className={`text-xl text-muted-foreground max-w-3xl mx-auto transition-all duration-1000 delay-200 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             We don't just execute events – we create strategic experiences that drive business growth and build lasting brand connections.
           </p>
         </div>
@@ -104,7 +115,7 @@ const WhyChooseUs = () => {
                 transitionDelay: `${index * 200 + 300}ms`,
               }}
             >
-              <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-gray-50/50 backdrop-blur-sm hover:from-gray-50/80 hover:to-purple-50/50 transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-purple-500/20 transform-gpu">
+              <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-purple-50/50 backdrop-blur-sm hover:from-purple-50/80 hover:to-blue-50/50 transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-purple-500/20 transform-gpu">
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-400/0 via-blue-400/0 to-cyan-400/0 group-hover:from-purple-400/10 group-hover:via-blue-400/10 group-hover:to-cyan-400/10 transition-all duration-500"></div>
                 <CardContent className="p-8 relative z-10">
                   <div className="flex items-start space-x-6">
@@ -114,15 +125,15 @@ const WhyChooseUs = () => {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
+                      <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-purple-600 transition-colors duration-300">
                         {reason.title}
                       </h3>
-                      <p className="text-gray-600 mb-4 group-hover:text-gray-800 transition-colors duration-300">
+                      <p className="text-muted-foreground mb-4 group-hover:text-foreground transition-colors duration-300">
                         {reason.description}
                       </p>
                       <ul className="space-y-2">
                         {reason.highlights.map((highlight, idx) => (
-                          <li key={idx} className="flex items-center text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-300" style={{transitionDelay: `${idx * 0.1}s`}}>
+                          <li key={idx} className="flex items-center text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300" style={{transitionDelay: `${idx * 0.1}s`}}>
                             <CheckCircle className="w-4 h-4 text-purple-600 mr-2 flex-shrink-0 group-hover:scale-110 transition-transform" />
                             {highlight}
                           </li>
@@ -148,18 +159,18 @@ const WhyChooseUs = () => {
           {achievements.map((achievement, index) => (
             <div 
               key={index} 
-              className={`text-center p-6 bg-white/70 rounded-lg transition-all duration-700 transform hover:scale-105 hover:shadow-lg hover:bg-white ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}
+              className={`text-center p-6 bg-white/80 backdrop-blur-sm rounded-lg transition-all duration-700 transform hover:scale-105 hover:shadow-xl hover:shadow-purple-500/20 hover:bg-white/90 border border-white/50 ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}
               style={{
                 transitionDelay: `${index * 150 + 900}ms`,
               }}
             >
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2 hover:scale-110 transition-transform duration-300">
+              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2 hover:scale-110 transition-transform duration-300 cursor-default">
                 {achievement.number}
               </div>
-              <div className="font-semibold text-gray-900 mb-2">
+              <div className="font-semibold text-foreground mb-2">
                 {achievement.label}
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 {achievement.description}
               </div>
             </div>
@@ -187,7 +198,7 @@ const WhyChooseUs = () => {
           ].map((item, index) => (
             <div 
               key={index}
-              className={`text-center p-6 group hover:bg-white/70 rounded-lg transition-all duration-700 transform hover:scale-105 hover:shadow-lg ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+              className={`text-center p-6 group hover:bg-white/80 hover:backdrop-blur-sm rounded-lg transition-all duration-700 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10 border border-transparent hover:border-white/50 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
               style={{
                 transitionDelay: `${index * 200 + 1200}ms`,
               }}
@@ -197,16 +208,22 @@ const WhyChooseUs = () => {
                   {item.icon}
                 </div>
               </div>
-              <h3 className="font-semibold mb-2 text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
+              <h3 className="font-semibold mb-2 text-foreground group-hover:text-purple-600 transition-colors duration-300">
                 {item.title}
               </h3>
-              <p className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300">
+              <p className="text-muted-foreground text-sm group-hover:text-foreground transition-colors duration-300">
                 {item.description}
               </p>
             </div>
           ))}
         </div>
       </div>
+      
+      {/* Additional floating elements - consistent with other components */}
+      <div className="absolute top-20 left-10 w-2 h-2 bg-blue-500 rounded-full animate-ping opacity-50"></div>
+      <div className="absolute top-40 right-20 w-3 h-3 bg-purple-500 rounded-full animate-pulse opacity-40"></div>
+      <div className="absolute bottom-20 left-20 w-1 h-1 bg-cyan-500 rounded-full animate-bounce opacity-60"></div>
+      <div className="absolute bottom-40 right-10 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-30" style={{animationDelay: '1s'}}></div>
     </section>
   );
 };

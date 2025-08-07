@@ -1,511 +1,170 @@
-This is my tesimonials.tsx:
-import React, { useRef, useEffect } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Star, Quote } from "lucide-react";
-import * as THREE from 'three';
+This is the directory Structure:
+Directory: C:\Users\Lovish\Lovish\Coding\WebDev\Projects\Krayons\src
 
-const Testimonials = () => {
-  const mountRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<THREE.Scene>();
-  const rendererRef = useRef<THREE.WebGLRenderer>();
-  const cameraRef = useRef<THREE.PerspectiveCamera>();
-  const animationRef = useRef<number>();
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          28-07-2025    07:23                assets
+d----          08-08-2025    00:20                components
+d----          28-07-2025    07:23                hooks
+d----          28-07-2025    07:23                lib
+d----          28-07-2025    07:23                pages
+-a---          28-07-2025    07:23            648 App.css
+-a---          28-07-2025    08:26           1224 App.tsx
+-a---          28-07-2025    07:23           9324 index.css
+-a---          28-07-2025    07:23            163 main.tsx
+-a---          28-07-2025    07:23             39 vite-env.d.ts
 
-  const testimonials = [
-    {
-      quote: "KRAYONS transformed our product launch from a simple announcement to an unforgettable experience. Their strategic approach and attention to detail resulted in 300% higher engagement than our previous launches.",
-      author: "Priya Sharma",
-      position: "CMO",
-      company: "TechVantage Solutions",
-      rating: 5
-    },
-    {
-      quote: "Working with KRAYONS for our international expansion was game-changing. They understood our brand perfectly and created culturally relevant experiences that resonated with Indian audiences while maintaining our global identity.",
-      author: "Marcus Johnson",
-      position: "Global Marketing Director",
-      company: "Luxe Fashion International",
-      rating: 5
-    },
-    {
-      quote: "The data-driven insights and ROI tracking that KRAYONS provided were exceptional. We could see exactly how our investment translated into business results. Their experiential marketing campaign delivered 250% ROI.",
-      author: "Rajesh Gupta",
-      position: "Founder & CEO",
-      company: "GreenTech Innovations",
-      rating: 5
-    },
-    {
-      quote: "KRAYONS doesn't just execute events – they craft experiences. Our corporate summit became a catalyst for company-wide digital transformation. The engagement levels and employee feedback were outstanding.",
-      author: "Sarah Chen",
-      position: "VP People & Culture",
-      company: "Global Dynamics Corp",
-      rating: 5
-    },
-    {
-      quote: "From concept to execution, KRAYONS exceeded every expectation. Their team's creativity combined with strategic thinking helped us achieve our sustainability goals while creating buzz in the market.",
-      author: "Ananya Reddy",
-      position: "Marketing Head",
-      company: "EcoBeauty Brand",
-      rating: 5
-    },
-    {
-      quote: "The level of professionalism and innovation KRAYONS brings is unmatched. They turned our vision into reality and helped us connect with our audience in ways we never thought possible.",
-      author: "David Thompson",
-      position: "Director of Marketing",
-      company: "Innovation Labs",
-      rating: 5
-    }
-  ];
+    Directory: C:\Users\Lovish\Lovish\Coding\WebDev\Projects\Krayons\src\assets
 
-  const brandLogos = [
-    { 
-      name: "Google", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-      category: "Technology" 
-    },
-    { 
-      name: "Apple", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
-      category: "Technology" 
-    },
-    { 
-      name: "Amazon", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-      category: "E-commerce" 
-    },
-    { 
-      name: "Meta", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg",
-      category: "Social Media" 
-    },
-    { 
-      name: "Spotify", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg",
-      category: "Music" 
-    },
-    { 
-      name: "LinkedIn", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
-      category: "Professional" 
-    },
-    { 
-      name: "YouTube", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
-      category: "Video" 
-    }
-  ];
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          28-07-2025    07:23          45500 brand-logos-collection.png
+-a---          28-07-2025    07:23          69324 data-solutions.jpg
+-a---          28-07-2025    07:23          80853 experiential-marketing.jpg
+-a---          28-07-2025    07:23         191916 hero-background.jpg
+-a---          28-07-2025    07:23          84015 strategic-events.jpg
 
-  useEffect(() => {
-    if (!mountRef.current) return;
+    Directory: C:\Users\Lovish\Lovish\Coding\WebDev\Projects\Krayons\src\components
 
-    // Scene setup
-    const scene = new THREE.Scene();
-    sceneRef.current = scene;
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          08-08-2025    00:20                3d
+d----          28-07-2025    07:23                ui
+-a---          08-08-2025    00:20           8859 About.tsx
+-a---          29-07-2025    11:32           3855 Footer.tsx
+-a---          08-08-2025    00:21           4788 Hero.tsx
+-a---          29-07-2025    16:25           9963 Navigation.tsx
+-a---          08-08-2025    00:21          11607 Services.tsx
+-a---          29-07-2025    14:11          12449 Testimonials.tsx
+-a---          29-07-2025    12:51          10002 WhyChooseUs.tsx
 
-    // Camera setup
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 0, 12);
-    cameraRef.current = camera;
+    Directory: C:\Users\Lovish\Lovish\Coding\WebDev\Projects\Krayons\src\components\3d
 
-    // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
-    rendererRef.current = renderer;
-    mountRef.current.appendChild(renderer.domElement);
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          08-08-2025    00:20           8076 ThreeDBackground.tsx
 
-    // Create floating geometric shapes
-    const geometries = [
-      new THREE.RingGeometry(0.5, 1, 8),
-      new THREE.ConeGeometry(0.6, 1.2, 6),
-      new THREE.CylinderGeometry(0.3, 0.6, 1, 8),
-      new THREE.TorusGeometry(0.6, 0.2, 8, 16),
-      new THREE.OctahedronGeometry(0.8, 0),
-      new THREE.IcosahedronGeometry(0.7, 0)
-    ];
+    Directory: C:\Users\Lovish\Lovish\Coding\WebDev\Projects\Krayons\src\components\ui
 
-    const materials = [
-      new THREE.MeshPhongMaterial({ 
-        color: 0x6366f1, 
-        shininess: 60, 
-        transparent: true, 
-        opacity: 0.25,
-        wireframe: true
-      }),
-      new THREE.MeshPhongMaterial({ 
-        color: 0x8b5cf6, 
-        shininess: 60, 
-        transparent: true, 
-        opacity: 0.2,
-        wireframe: true
-      }),
-      new THREE.MeshPhongMaterial({ 
-        color: 0x06b6d4, 
-        shininess: 60, 
-        transparent: true, 
-        opacity: 0.3,
-        wireframe: true
-      }),
-      new THREE.MeshPhongMaterial({ 
-        color: 0x10b981, 
-        shininess: 60, 
-        transparent: true, 
-        opacity: 0.22,
-        wireframe: true
-      }),
-      new THREE.MeshPhongMaterial({ 
-        color: 0xf59e0b, 
-        shininess: 60, 
-        transparent: true, 
-        opacity: 0.28,
-        wireframe: true
-      }),
-      new THREE.MeshPhongMaterial({ 
-        color: 0xef4444, 
-        shininess: 60, 
-        transparent: true, 
-        opacity: 0.24,
-        wireframe: true
-      })
-    ];
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          28-07-2025    07:23           2033 accordion.tsx
+-a---          28-07-2025    07:23           4559 alert-dialog.tsx
+-a---          28-07-2025    07:23           1643 alert.tsx
+-a---          28-07-2025    07:23            145 aspect-ratio.tsx
+-a---          28-07-2025    07:23           1453 avatar.tsx
+-a---          28-07-2025    07:23           1164 badge.tsx
+-a---          28-07-2025    07:23           2816 breadcrumb.tsx
+-a---          28-07-2025    07:23           1957 button.tsx
+-a---          28-07-2025    07:23           2684 calendar.tsx
+-a---          28-07-2025    07:23           1956 card.tsx
+-a---          28-07-2025    07:23           6470 carousel.tsx
+-a---          28-07-2025    07:23          10829 chart.tsx
+-a---          28-07-2025    07:23           1084 checkbox.tsx
+-a---          28-07-2025    07:23            324 collapsible.tsx
+-a---          28-07-2025    07:23           5032 command.tsx
+-a---          28-07-2025    07:23           7444 context-menu.tsx
+-a---          28-07-2025    07:23           3955 dialog.tsx
+-a---          28-07-2025    07:23           3123 drawer.tsx
+-a---          28-07-2025    07:23           7493 dropdown-menu.tsx
+-a---          28-07-2025    07:23           4261 form.tsx
+-a---          28-07-2025    07:23           1211 hover-card.tsx
+-a---          28-07-2025    07:23           2223 input-otp.tsx
+-a---          28-07-2025    07:23            813 input.tsx
+-a---          28-07-2025    07:23            734 label.tsx
+-a---          28-07-2025    07:23           8208 menubar.tsx
+-a---          28-07-2025    07:23           5174 navigation-menu.tsx
+-a---          28-07-2025    07:23           2868 pagination.tsx
+-a---          28-07-2025    07:23           1259 popover.tsx
+-a---          28-07-2025    07:23            803 progress.tsx
+-a---          28-07-2025    07:23           1509 radio-group.tsx
+-a---          28-07-2025    07:23           1752 resizable.tsx
+-a---          28-07-2025    07:23           1688 scroll-area.tsx
+-a---          28-07-2025    07:23           5773 select.tsx
+-a---          28-07-2025    07:23            785 separator.tsx
+-a---          28-07-2025    07:23           4381 sheet.tsx
+-a---          28-07-2025    07:23          24128 sidebar.tsx
+-a---          28-07-2025    07:23            276 skeleton.tsx
+-a---          28-07-2025    07:23           1103 slider.tsx
+-a---          28-07-2025    07:23            923 sonner.tsx
+-a---          28-07-2025    07:23           1166 switch.tsx
+-a---          28-07-2025    07:23           2882 table.tsx
+-a---          28-07-2025    07:23           1936 tabs.tsx
+-a---          28-07-2025    07:23            796 textarea.tsx
+-a---          28-07-2025    07:23           4972 toast.tsx
+-a---          28-07-2025    07:23            805 toaster.tsx
+-a---          28-07-2025    07:23           1798 toggle-group.tsx
+-a---          28-07-2025    07:23           1478 toggle.tsx
+-a---          28-07-2025    07:23           1173 tooltip.tsx
+-a---          28-07-2025    07:23             85 use-toast.ts
 
-    const meshes: THREE.Mesh[] = [];
+    Directory: C:\Users\Lovish\Lovish\Coding\WebDev\Projects\Krayons\src\hooks
 
-    // Create floating objects in testimonials area
-    for (let i = 0; i < 12; i++) {
-      const geometry = geometries[i % geometries.length];
-      const material = materials[i % materials.length];
-      const mesh = new THREE.Mesh(geometry, material);
-      
-      // Position objects around testimonials area
-      const angle = (i / 12) * Math.PI * 2;
-      const radius = 7 + Math.random() * 3;
-      mesh.position.x = Math.cos(angle) * radius;
-      mesh.position.y = Math.sin(angle) * radius * 0.6;
-      mesh.position.z = -1 + Math.random() * 3;
-      
-      // Random rotation
-      mesh.rotation.x = Math.random() * Math.PI;
-      mesh.rotation.y = Math.random() * Math.PI;
-      
-      // Store initial position for animation
-      mesh.userData = {
-        initialX: mesh.position.x,
-        initialY: mesh.position.y,
-        initialZ: mesh.position.z,
-        floatSpeed: 0.25 + Math.random() * 0.25,
-        rotationSpeed: 0.004 + Math.random() * 0.008,
-        offsetPhase: Math.random() * Math.PI * 2
-      };
-      
-      meshes.push(mesh);
-      scene.add(mesh);
-    }
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          28-07-2025    07:23            584 use-mobile.tsx
+-a---          28-07-2025    07:23           4086 use-toast.ts
 
-    // Lighting setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-    scene.add(ambientLight);
+    Directory: C:\Users\Lovish\Lovish\Coding\WebDev\Projects\Krayons\src\lib
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
-    directionalLight.position.set(5, 5, 8);
-    scene.add(directionalLight);
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          28-07-2025    07:23            172 utils.ts
 
-    const pointLight1 = new THREE.PointLight(0x6366f1, 0.3, 12);
-    pointLight1.position.set(-6, 4, 6);
-    scene.add(pointLight1);
+    Directory: C:\Users\Lovish\Lovish\Coding\WebDev\Projects\Krayons\src\pages
 
-    const pointLight2 = new THREE.PointLight(0x8b5cf6, 0.3, 12);
-    pointLight2.position.set(6, -4, 6);
-    scene.add(pointLight2);
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          08-08-2025    00:07            624 Index.tsx
+-a---          28-07-2025    07:23            766 NotFound.tsx
+-a---          28-07-2025    07:23           9493 Privacy.tsx
+-a---          28-07-2025    07:23           8152 Terms.tsx
 
-    // Particle system
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 80;
-    const posArray = new Float32Array(particlesCount * 3);
 
-    for (let i = 0; i < particlesCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 30;
-    }
+I want the Services.tsx to be show as a curvy vertical road, in which as I scroll down, the car moves through the road through the points as:
+1. Strategy
+Strategy is the foundation of everything we do at Crayons. Our strategic thinking is human-centric and focuses on solutions that go beyond conventions, media, and formats.
+2. Creative
+At Crayons we produce creatives which not only win consumers hearts but awards accolades too More than 65 Awards in last 3 years.
+3. Digital
+Everyone has digital technology. It’s what you do with it that matters.
+4. Media
+It’s not only what you put in your ad that matters, but where you put your ad.
+5. Events
+When events need to be truly eventful.
+6. WOW
+It’s all about location, location, location.
 
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.02,
-      color: 0x6366f1,
-      transparent: true,
-      opacity: 0.3
-    });
+Please make a beautiful animation. Services.tsx is a section of the home page. So it should be implemented as according to that. 
 
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
 
-    // Animation loop
-    const animate = () => {
-      animationRef.current = requestAnimationFrame(animate);
+This is my Index.tsx:
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Services from "@/components/Services";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import Testimonials from "@/components/Testimonials";
 
-      const time = Date.now() * 0.001;
-
-      // Animate floating objects
-      meshes.forEach((mesh, index) => {
-        const userData = mesh.userData;
-        
-        // Floating motion
-        mesh.position.y = userData.initialY + Math.sin(time * userData.floatSpeed + userData.offsetPhase) * 0.4;
-        mesh.position.x = userData.initialX + Math.cos(time * userData.floatSpeed * 0.7 + userData.offsetPhase) * 0.25;
-        mesh.position.z = userData.initialZ + Math.sin(time * userData.floatSpeed * 0.5 + userData.offsetPhase) * 0.15;
-        
-        // Rotation
-        mesh.rotation.x += userData.rotationSpeed;
-        mesh.rotation.y += userData.rotationSpeed * 0.8;
-        mesh.rotation.z += userData.rotationSpeed * 0.6;
-      });
-
-      // Animate particles
-      particlesMesh.rotation.y += 0.0008;
-      particlesMesh.rotation.x += 0.0004;
-
-      // Subtle camera movement
-      if (cameraRef.current) {
-        cameraRef.current.position.x = Math.sin(time * 0.04) * 0.08;
-        cameraRef.current.position.y = Math.cos(time * 0.06) * 0.04;
-        cameraRef.current.lookAt(0, 0, 0);
-      }
-
-      renderer.render(scene, camera);
-    };
-
-    animate();
-
-    // Mouse interaction
-    const handleMouseMove = (event: MouseEvent) => {
-      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-
-      meshes.forEach((mesh, index) => {
-        const factor = (index % 3 + 1) * 0.08;
-        mesh.rotation.x += mouseY * factor * 0.008;
-        mesh.rotation.y += mouseX * factor * 0.008;
-      });
-    };
-
-    // Resize handler
-    const handleResize = () => {
-      if (!cameraRef.current || !rendererRef.current) return;
-      
-      cameraRef.current.aspect = window.innerWidth / window.innerHeight;
-      cameraRef.current.updateProjectionMatrix();
-      rendererRef.current.setSize(window.innerWidth, window.innerHeight);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', handleResize);
-      
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      
-      if (mountRef.current && rendererRef.current) {
-        mountRef.current.removeChild(rendererRef.current.domElement);
-      }
-      
-      // Dispose of Three.js objects
-      geometries.forEach(geo => geo.dispose());
-      materials.forEach(mat => mat.dispose());
-      particlesGeometry.dispose();
-      particlesMaterial.dispose();
-      rendererRef.current?.dispose();
-    };
-  }, []);
-
+const Index = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50/40 to-purple-50/30 overflow-hidden">
-      {/* Three.js Canvas Container */}
-      <div 
-        ref={mountRef} 
-        className="absolute inset-0 z-0"
-        style={{ pointerEvents: 'none' }}
-      />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        {/* Header with Animation */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 animate-fade-in-up">
-            What Our <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">Clients Say</span>
-          </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto animate-fade-in-up animate-delay-200">
-            Don't just take our word for it. Here's what industry leaders have to say about their experience working with KRAYONS.
-          </p>
-        </div>
-
-        {/* Testimonials Grid with Staggered Animation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="animate-fade-in-up" style={{animationDelay: `${index * 0.15}s`}}>
-              <Card className="card-hover card-tilt shadow-card border-0 bg-card/80 backdrop-blur-sm group hover:bg-card transition-all duration-300 h-full">
-                <CardContent className="p-6 flex flex-col h-full">
-                  {/* Quote Icon */}
-                  <div className="mb-4">
-                    <Quote className="w-8 h-8 text-primary/40 group-hover:text-primary/60 transition-colors" />
-                  </div>
-
-                  {/* Rating with Animation */}
-                  <div className="flex space-x-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className="w-4 h-4 fill-primary text-primary hover:scale-125 transition-transform cursor-default"
-                        style={{transitionDelay: `${i * 0.1}s`}}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Quote */}
-                  <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow group-hover:text-foreground transition-colors">
-                    "{testimonial.quote}"
-                  </p>
-
-                  {/* Author with Hover Effect */}
-                  <div className="border-t pt-4 group-hover:border-primary/20 transition-colors">
-                    <div className="font-semibold text-foreground group-hover:text-primary transition-colors">{testimonial.author}</div>
-                    <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{testimonial.position}</div>
-                    <div className="text-sm text-primary font-medium group-hover:scale-105 transition-transform origin-left">{testimonial.company}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
-        </div>
-
-        {/* Three-Layer Infinite Scrolling Brand Logos */}
-        <div className="text-center animate-fade-in-up animate-delay-600 overflow-hidden">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-12">
-            Trusted by <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">Leading Brands</span>
-          </h3>
-          
-          {/* First Row - Scroll Right */}
-          <div className="relative mb-6 overflow-hidden">
-            <div className="flex animate-scroll-right space-x-8 whitespace-nowrap">
-              {[...brandLogos.slice(0, 6), ...brandLogos.slice(0, 6)].map((brand, index) => (
-                <div 
-                  key={`row1-${index}`}
-                  className="flex-shrink-0 bg-white/80 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-lg hover:bg-white hover:scale-105 transition-all duration-300 group cursor-pointer border border-gray-200/50 min-w-[180px]"
-                >
-                  <div className="flex items-center justify-center h-16 mb-2">
-                    <img 
-                      src={brand.logo} 
-                      alt={`${brand.name} logo`}
-                      className="max-h-12 max-w-24 object-contain filter group-hover:brightness-110 transition-all duration-300"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
-                        if (fallback) fallback.style.display = 'block';
-                      }}
-                    />
-                    <div className="logo-fallback hidden text-center">
-                      <div className="text-gray-900 font-semibold text-sm group-hover:text-blue-600 transition-colors">
-                        {brand.name}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-600 text-center group-hover:text-blue-600 transition-colors">
-                    {brand.category}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Second Row - Scroll Left */}
-          <div className="relative mb-6 overflow-hidden">
-            <div className="flex animate-scroll-left space-x-8 whitespace-nowrap">
-              {[...brandLogos.slice(6, 12), ...brandLogos.slice(6, 12)].map((brand, index) => (
-                <div 
-                  key={`row2-${index}`}
-                  className="flex-shrink-0 bg-gradient-to-r from-blue-50/80 to-purple-50/80 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-lg hover:from-blue-50 hover:to-purple-50 hover:scale-105 transition-all duration-300 group cursor-pointer border border-blue-200/50 min-w-[180px]"
-                >
-                  <div className="flex items-center justify-center h-16 mb-2">
-                    <img 
-                      src={brand.logo} 
-                      alt={`${brand.name} logo`}
-                      className="max-h-12 max-w-24 object-contain filter group-hover:brightness-110 transition-all duration-300"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
-                        if (fallback) fallback.style.display = 'block';
-                      }}
-                    />
-                    <div className="logo-fallback hidden text-center">
-                      <div className="text-gray-900 font-semibold text-sm group-hover:text-purple-600 transition-colors">
-                        {brand.name}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-600 text-center group-hover:text-purple-600 transition-colors">
-                    {brand.category}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Third Row - Scroll Right (Faster) */}
-          <div className="relative overflow-hidden">
-            <div className="flex animate-scroll-right-fast space-x-8 whitespace-nowrap">
-              {[...brandLogos.slice(12, 16), ...brandLogos.slice(0, 4), ...brandLogos.slice(12, 16), ...brandLogos.slice(0, 4)].map((brand, index) => (
-                <div 
-                  key={`row3-${index}`}
-                  className="flex-shrink-0 bg-gradient-to-br from-white/90 via-gray-50/80 to-blue-50/60 backdrop-blur-sm px-6 py-4 rounded-xl shadow-sm hover:shadow-lg hover:from-white hover:to-blue-50/80 hover:scale-105 transition-all duration-300 group cursor-pointer border border-gray-300/40 min-w-[180px]"
-                >
-                  <div className="flex items-center justify-center h-16 mb-2">
-                    <img 
-                      src={brand.logo} 
-                      alt={`${brand.name} logo`}
-                      className="max-h-12 max-w-24 object-contain filter group-hover:brightness-110 transition-all duration-300"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
-                        if (fallback) fallback.style.display = 'block';
-                      }}
-                    />
-                    <div className="logo-fallback hidden text-center">
-                      <div className="text-gray-900 font-semibold text-sm group-hover:text-cyan-600 transition-colors">
-                        {brand.name}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-600 text-center group-hover:text-cyan-600 transition-colors">
-                    {brand.category}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
+    <div className="min-h-screen">
+      <Hero />
+      <div id="about">
+        <About />
       </div>
-    </section>
+      <div id="services">
+        <Services />
+      </div>
+      <div id="why-us">
+        <WhyChooseUs />
+      </div>
+      <div id="testimonials">
+        <Testimonials />
+      </div>
+    </div>
   );
 };
 
-export default Testimonials;
+export default Index;
 
-I want to add these companies:
-Ministry of Jal Shakti, India
-Airtel
-Mahindra COMVIVA
-MACROKIOSK
-India Tourism Development Corporation Ltd.
-Namami Gange
-DigiTantra
-Mobi2Fun
-Infobip
-Ministry of Urban Development, India
-National Urban Livelihood Mission, India
-Osho World
-WOTR (Water gives life)
+My website is in light mode. 

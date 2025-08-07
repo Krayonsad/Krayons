@@ -1,14 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Globe, TrendingUp } from "lucide-react";
-import * as THREE from 'three';
+import ThreeDBackground from "@/components/3d/ThreeDBackground";
 
 const About = () => {
-  const mountRef = useRef(null);
-  const sceneRef = useRef(null);
-  const rendererRef = useRef(null);
-  const frameRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const achievements = [
     {
@@ -38,147 +35,6 @@ const About = () => {
   ];
 
   useEffect(() => {
-    if (!mountRef.current) return;
-
-    // Scene setup
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, mountRef.current.clientWidth / mountRef.current.clientHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    
-    renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
-    renderer.setClearColor(0x000000, 0);
-    mountRef.current.appendChild(renderer.domElement);
-
-    sceneRef.current = scene;
-    rendererRef.current = renderer;
-
-    // Create floating geometric shapes
-    const geometries = [
-      new THREE.BoxGeometry(1, 1, 1),
-      new THREE.SphereGeometry(0.7, 8, 6),
-      new THREE.ConeGeometry(0.6, 1.2, 8),
-      new THREE.OctahedronGeometry(0.8),
-    ];
-
-    const materials = [
-      new THREE.MeshBasicMaterial({ 
-        color: 0x3b82f6, 
-        wireframe: true,
-        transparent: true,
-        opacity: 0.6
-      }),
-      new THREE.MeshBasicMaterial({ 
-        color: 0x8b5cf6, 
-        wireframe: true,
-        transparent: true,
-        opacity: 0.6
-      }),
-      new THREE.MeshBasicMaterial({ 
-        color: 0x06b6d4, 
-        wireframe: true,
-        transparent: true,
-        opacity: 0.6
-      }),
-      new THREE.MeshBasicMaterial({ 
-        color: 0x10b981, 
-        wireframe: true,
-        transparent: true,
-        opacity: 0.6
-      }),
-    ];
-
-    const meshes = [];
-    
-    for (let i = 0; i < 12; i++) {
-      const geometry = geometries[i % geometries.length];
-      const material = materials[i % materials.length];
-      const mesh = new THREE.Mesh(geometry, material);
-      
-      // Random positioning
-      mesh.position.x = (Math.random() - 0.5) * 20;
-      mesh.position.y = (Math.random() - 0.5) * 15;
-      mesh.position.z = (Math.random() - 0.5) * 10;
-      
-      // Random rotation speeds
-      mesh.userData = {
-        rotationSpeed: {
-          x: (Math.random() - 0.5) * 0.02,
-          y: (Math.random() - 0.5) * 0.02,
-          z: (Math.random() - 0.5) * 0.02,
-        },
-        floatSpeed: Math.random() * 0.01 + 0.005,
-        floatOffset: Math.random() * Math.PI * 2,
-      };
-      
-      scene.add(mesh);
-      meshes.push(mesh);
-    }
-
-    // Create particle system
-    const particleGeometry = new THREE.BufferGeometry();
-    const particleCount = 100;
-    const positions = new Float32Array(particleCount * 3);
-    
-    for (let i = 0; i < particleCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 50;
-    }
-    
-    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    
-    const particleMaterial = new THREE.PointsMaterial({
-      color: 0x3b82f6,
-      size: 0.1,
-      transparent: true,
-      opacity: 0.6,
-    });
-    
-    const particles = new THREE.Points(particleGeometry, particleMaterial);
-    scene.add(particles);
-
-    camera.position.z = 15;
-
-    // Animation loop
-    const animate = () => {
-      frameRef.current = requestAnimationFrame(animate);
-      
-      const time = Date.now() * 0.001;
-      
-      // Animate meshes
-      meshes.forEach((mesh, index) => {
-        mesh.rotation.x += mesh.userData.rotationSpeed.x;
-        mesh.rotation.y += mesh.userData.rotationSpeed.y;
-        mesh.rotation.z += mesh.userData.rotationSpeed.z;
-        
-        // Floating motion
-        mesh.position.y += Math.sin(time * mesh.userData.floatSpeed + mesh.userData.floatOffset) * 0.01;
-      });
-      
-      // Animate particles
-      const positions = particles.geometry.attributes.position.array;
-      for (let i = 0; i < positions.length; i += 3) {
-        positions[i + 1] += Math.sin(time + positions[i]) * 0.001;
-      }
-      particles.geometry.attributes.position.needsUpdate = true;
-      
-      // Rotate entire particle system
-      particles.rotation.y += 0.002;
-      
-      renderer.render(scene, camera);
-    };
-
-    animate();
-
-    // Handle resize
-    const handleResize = () => {
-      if (!mountRef.current || !camera || !renderer) return;
-      
-      camera.aspect = mountRef.current.clientWidth / mountRef.current.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-
     // Intersection Observer for visibility
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -187,36 +43,27 @@ const About = () => {
       { threshold: 0.1 }
     );
 
-    if (mountRef.current) {
-      observer.observe(mountRef.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
+      if (observer && sectionRef.current) {
+        observer.unobserve(sectionRef.current);
       }
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
-      }
-      if (observer && mountRef.current) {
-        observer.unobserve(mountRef.current);
-      }
-      renderer.dispose();
     };
   }, []);
 
   return (
-    <section className="py-20 bg-background relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 bg-background relative overflow-hidden">
       {/* 3D Background */}
-      <div 
-        ref={mountRef} 
-        className="absolute inset-0 opacity-30"
-        style={{ 
-          background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
-          filter: isVisible ? 'blur(0px)' : 'blur(2px)',
-          transition: 'filter 1s ease-in-out'
-        }}
+      <ThreeDBackground 
+        opacity={0.3}
+        particleCount={100}
+        shapeCount={12}
+        colorScheme="blue"
+        animationSpeed={1}
+        className={`opacity-30 ${isVisible ? 'blur-0' : 'blur-sm'} transition-all duration-1000`}
       />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
