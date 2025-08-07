@@ -1,8 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ThreeDBackground from "@/components/3d/ThreeDBackground";
+
+// Mock ThreeDBackground component for this example
+const ThreeDBackground = ({ opacity, particleCount, shapeCount, colorScheme, animationSpeed, className }) => (
+  <div className={`absolute inset-0 ${className}`}>
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 animate-pulse" />
+  </div>
+);
 
 const Services = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isInView, setIsInView] = useState(false);
 
@@ -211,7 +217,7 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Professional Timeline with Enhanced 3D Effects */}
+        {/* Professional Timeline with Split Layout */}
         <div className="max-w-6xl mx-auto">
           <div className="relative">
             {/* Enhanced Timeline Spine with 3D depth */}
@@ -234,13 +240,11 @@ const Services = () => {
               />
             </div>
 
-            {/* Service Nodes with Enhanced 3D Effects */}
+            {/* Service Nodes with Split Layout */}
             {services.map((service, index) => (
               <div
                 key={service.id}
-                className={`relative flex items-center mb-40 transition-all duration-1200 ease-out ${
-                  index % 2 === 0 ? 'justify-start' : 'justify-end'
-                }`}
+                className="relative flex items-center mb-40 transition-all duration-1200 ease-out"
                 style={{ 
                   transitionDelay: `${index * 100}ms`
                 }}
@@ -289,80 +293,208 @@ const Services = () => {
                   </div>
                 </div>
 
-                {/* Enhanced Service Card with 3D effects */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'mr-auto pr-20' : 'ml-auto pl-20'}`}>
-                  <div className={`relative group transition-all duration-1000 transform hover:scale-105 hover:rotate-1 transform-gpu ${
-                    index <= activeStep 
-                      ? 'translate-y-0 opacity-100 scale-100' 
-                      : index === activeStep + 1 
-                        ? 'translate-y-4 opacity-70 scale-98'
-                        : 'translate-y-8 opacity-40 scale-95'
-                  }`}>
-                    {/* Premium Card Glow with enhanced 3D depth */}
-                    {index === activeStep && (
-                      <>
-                        <div className={`absolute -inset-4 bg-gradient-to-br ${service.accentColor} opacity-20 blur-2xl rounded-3xl animate-pulse`} />
-                        <div className={`absolute -inset-2 bg-gradient-to-br ${service.accentColor} opacity-10 blur-xl rounded-2xl`} />
-                        <div className={`absolute -inset-1 bg-gradient-to-br ${service.accentColor} opacity-5 blur-lg rounded-xl`} />
-                      </>
-                    )}
-                    
-                    {/* Main Professional Card with 3D depth */}
-                    <div className={`relative bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-700 border border-gray-200/50 group-hover:border-gray-300/50 transform-gpu ${
-                      index === activeStep ? 'ring-1 ring-gray-200/50 shadow-xl' : ''
-                    }`}
-                    style={{
-                      boxShadow: index === activeStep 
-                        ? '0 20px 60px rgba(0,0,0,0.1), 0 8px 25px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8)'
-                        : '0 10px 30px rgba(0,0,0,0.05), 0 4px 15px rgba(0,0,0,0.04)'
-                    }}>
-                      {/* Card Header with 3D elements */}
-                      <div className="flex items-start justify-between mb-6">
-                        <div className="flex items-center">
-                          <div className={`w-14 h-14 rounded-xl ${service.bgColor} flex items-center justify-center text-2xl mr-5 transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-110 hover:rotate-3 transform-gpu ${
-                            index <= activeStep ? 'animate-bounce' : ''
-                          } border border-gray-100`}
-                          style={{
-                            boxShadow: '0 4px 15px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8)'
-                          }}>
-                            {service.icon}
-                          </div>
-                          <div>
-                            <h3 className={`text-2xl font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent mb-1 hover:scale-105 transition-transform duration-300`}>
-                              {service.title}
-                            </h3>
-                            <div className={`inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full transition-all duration-500 shadow-md hover:shadow-lg hover:scale-105 transform-gpu ${
-                              index <= activeStep 
-                                ? `bg-gradient-to-r ${service.accentColor} text-white` 
-                                : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                            }`}>
-                              {service.stats}
+                {/* Alternating Layout */}
+                {index % 2 === 0 ? (
+                  <>
+                    {/* Left Side - Title Card */}
+                    <div className="w-5/12 pr-20">
+                      <div className={`relative group transition-all duration-1000 transform hover:scale-105 hover:-rotate-1 transform-gpu ${
+                        index <= activeStep 
+                          ? 'translate-y-0 opacity-100 scale-100' 
+                          : index === activeStep + 1 
+                            ? 'translate-y-4 opacity-70 scale-98'
+                            : 'translate-y-8 opacity-40 scale-95'
+                      }`}>
+                        {/* Premium Card Glow for Title */}
+                        {index === activeStep && (
+                          <>
+                            <div className={`absolute -inset-4 bg-gradient-to-br ${service.accentColor} opacity-20 blur-2xl rounded-3xl animate-pulse`} />
+                            <div className={`absolute -inset-2 bg-gradient-to-br ${service.accentColor} opacity-10 blur-xl rounded-2xl`} />
+                          </>
+                        )}
+                        
+                        {/* Title Card */}
+                        <div className={`relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-700 border border-gray-200/50 group-hover:border-gray-300/50 transform-gpu ${
+                          index === activeStep ? 'ring-1 ring-gray-200/50 shadow-xl' : ''
+                        }`}
+                        style={{
+                          boxShadow: index === activeStep 
+                            ? '0 20px 60px rgba(0,0,0,0.1), 0 8px 25px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8)'
+                            : '0 10px 30px rgba(0,0,0,0.05), 0 4px 15px rgba(0,0,0,0.04)'
+                        }}>
+                          <div className="flex items-center mb-4">
+                            <div className={`w-12 h-12 rounded-xl ${service.bgColor} flex items-center justify-center text-xl mr-4 transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-110 hover:rotate-3 transform-gpu ${
+                              index <= activeStep ? 'animate-bounce' : ''
+                            } border border-gray-100`}>
+                              {service.icon}
+                            </div>
+                            <div>
+                              <h3 className={`text-xl font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent hover:scale-105 transition-transform duration-300`}>
+                                {service.title}
+                              </h3>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      
-                      {/* Enhanced Description */}
-                      <p className="text-gray-600 leading-relaxed text-base font-light mb-6 hover:text-gray-700 transition-colors duration-300">
-                        {service.description}
-                      </p>
-                      
-                      {/* Professional Progress Bar with 3D effect */}
-                      <div className="relative">
-                        <div className="h-1 bg-gray-100 rounded-full overflow-hidden shadow-inner">
-                          <div className={`h-full bg-gradient-to-r ${service.accentColor} rounded-full transition-all duration-1000 ease-out ${
-                            index <= activeStep ? 'w-full' : 'w-0'
-                          }`}
-                          style={{
-                            boxShadow: '0 0 10px rgba(168, 85, 247, 0.5)'
-                          }}>
-                            <div className="h-full w-full bg-white/30 animate-pulse" />
+                          
+                          <div className={`inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full transition-all duration-500 shadow-md hover:shadow-lg hover:scale-105 transform-gpu ${
+                            index <= activeStep 
+                              ? `bg-gradient-to-r ${service.accentColor} text-white` 
+                              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                          }`}>
+                            {service.stats}
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+
+                    {/* Right Side - Description Card */}
+                    <div className="w-5/12 ml-auto pl-20">
+                      <div className={`relative group transition-all duration-1000 transform hover:scale-105 hover:rotate-1 transform-gpu ${
+                        index <= activeStep 
+                          ? 'translate-y-0 opacity-100 scale-100' 
+                          : index === activeStep + 1 
+                            ? 'translate-y-4 opacity-70 scale-98'
+                            : 'translate-y-8 opacity-40 scale-95'
+                      }`}
+                      style={{ transitionDelay: '150ms' }}>
+                        {/* Premium Card Glow for Description */}
+                        {index === activeStep && (
+                          <>
+                            <div className={`absolute -inset-4 bg-gradient-to-br ${service.accentColor} opacity-15 blur-2xl rounded-3xl animate-pulse`} />
+                            <div className={`absolute -inset-2 bg-gradient-to-br ${service.accentColor} opacity-8 blur-xl rounded-2xl`} />
+                          </>
+                        )}
+                        
+                        {/* Description Card */}
+                        <div className={`relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-700 border border-gray-200/50 group-hover:border-gray-300/50 transform-gpu ${
+                          index === activeStep ? 'ring-1 ring-gray-200/50 shadow-xl' : ''
+                        }`}
+                        style={{
+                          boxShadow: index === activeStep 
+                            ? '0 20px 60px rgba(0,0,0,0.1), 0 8px 25px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8)'
+                            : '0 10px 30px rgba(0,0,0,0.05), 0 4px 15px rgba(0,0,0,0.04)'
+                        }}>
+                          <p className="text-gray-600 leading-relaxed text-base font-light mb-4 hover:text-gray-700 transition-colors duration-300">
+                            {service.description}
+                          </p>
+                          
+                          {/* Professional Progress Bar with 3D effect */}
+                          <div className="relative">
+                            <div className="h-1 bg-gray-100 rounded-full overflow-hidden shadow-inner">
+                              <div className={`h-full bg-gradient-to-r ${service.accentColor} rounded-full transition-all duration-1000 ease-out ${
+                                index <= activeStep ? 'w-full' : 'w-0'
+                              }`}
+                              style={{
+                                boxShadow: '0 0 10px rgba(168, 85, 247, 0.5)'
+                              }}>
+                                <div className="h-full w-full bg-white/30 animate-pulse" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Left Side - Description Card */}
+                    <div className="w-5/12 pr-20">
+                      <div className={`relative group transition-all duration-1000 transform hover:scale-105 hover:-rotate-1 transform-gpu ${
+                        index <= activeStep 
+                          ? 'translate-y-0 opacity-100 scale-100' 
+                          : index === activeStep + 1 
+                            ? 'translate-y-4 opacity-70 scale-98'
+                            : 'translate-y-8 opacity-40 scale-95'
+                      }`}
+                      style={{ transitionDelay: '150ms' }}>
+                        {/* Premium Card Glow for Description */}
+                        {index === activeStep && (
+                          <>
+                            <div className={`absolute -inset-4 bg-gradient-to-br ${service.accentColor} opacity-15 blur-2xl rounded-3xl animate-pulse`} />
+                            <div className={`absolute -inset-2 bg-gradient-to-br ${service.accentColor} opacity-8 blur-xl rounded-2xl`} />
+                          </>
+                        )}
+                        
+                        {/* Description Card */}
+                        <div className={`relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-700 border border-gray-200/50 group-hover:border-gray-300/50 transform-gpu ${
+                          index === activeStep ? 'ring-1 ring-gray-200/50 shadow-xl' : ''
+                        }`}
+                        style={{
+                          boxShadow: index === activeStep 
+                            ? '0 20px 60px rgba(0,0,0,0.1), 0 8px 25px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8)'
+                            : '0 10px 30px rgba(0,0,0,0.05), 0 4px 15px rgba(0,0,0,0.04)'
+                        }}>
+                          <p className="text-gray-600 leading-relaxed text-base font-light mb-4 hover:text-gray-700 transition-colors duration-300">
+                            {service.description}
+                          </p>
+                          
+                          {/* Professional Progress Bar with 3D effect */}
+                          <div className="relative">
+                            <div className="h-1 bg-gray-100 rounded-full overflow-hidden shadow-inner">
+                              <div className={`h-full bg-gradient-to-r ${service.accentColor} rounded-full transition-all duration-1000 ease-out ${
+                                index <= activeStep ? 'w-full' : 'w-0'
+                              }`}
+                              style={{
+                                boxShadow: '0 0 10px rgba(168, 85, 247, 0.5)'
+                              }}>
+                                <div className="h-full w-full bg-white/30 animate-pulse" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Side - Title Card */}
+                    <div className="w-5/12 ml-auto pl-20">
+                      <div className={`relative group transition-all duration-1000 transform hover:scale-105 hover:rotate-1 transform-gpu ${
+                        index <= activeStep 
+                          ? 'translate-y-0 opacity-100 scale-100' 
+                          : index === activeStep + 1 
+                            ? 'translate-y-4 opacity-70 scale-98'
+                            : 'translate-y-8 opacity-40 scale-95'
+                      }`}>
+                        {/* Premium Card Glow for Title */}
+                        {index === activeStep && (
+                          <>
+                            <div className={`absolute -inset-4 bg-gradient-to-br ${service.accentColor} opacity-20 blur-2xl rounded-3xl animate-pulse`} />
+                            <div className={`absolute -inset-2 bg-gradient-to-br ${service.accentColor} opacity-10 blur-xl rounded-2xl`} />
+                          </>
+                        )}
+                        
+                        {/* Title Card */}
+                        <div className={`relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-700 border border-gray-200/50 group-hover:border-gray-300/50 transform-gpu ${
+                          index === activeStep ? 'ring-1 ring-gray-200/50 shadow-xl' : ''
+                        }`}
+                        style={{
+                          boxShadow: index === activeStep 
+                            ? '0 20px 60px rgba(0,0,0,0.1), 0 8px 25px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8)'
+                            : '0 10px 30px rgba(0,0,0,0.05), 0 4px 15px rgba(0,0,0,0.04)'
+                        }}>
+                          <div className="flex items-center mb-4">
+                            <div className={`w-12 h-12 rounded-xl ${service.bgColor} flex items-center justify-center text-xl mr-4 transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-110 hover:rotate-3 transform-gpu ${
+                              index <= activeStep ? 'animate-bounce' : ''
+                            } border border-gray-100`}>
+                              {service.icon}
+                            </div>
+                            <div>
+                              <h3 className={`text-xl font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent hover:scale-105 transition-transform duration-300`}>
+                                {service.title}
+                              </h3>
+                            </div>
+                          </div>
+                          
+                          <div className={`inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full transition-all duration-500 shadow-md hover:shadow-lg hover:scale-105 transform-gpu ${
+                            index <= activeStep 
+                              ? `bg-gradient-to-r ${service.accentColor} text-white` 
+                              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                          }`}>
+                            {service.stats}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             ))}
           </div>
