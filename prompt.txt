@@ -1,4 +1,3 @@
-This is the directory Structure:
 Directory: C:\Users\Lovish\Lovish\Coding\WebDev\Projects\Krayons\src
 
 Mode                 LastWriteTime         Length Name
@@ -120,51 +119,631 @@ Mode                 LastWriteTime         Length Name
 -a---          28-07-2025    07:23           9493 Privacy.tsx
 -a---          28-07-2025    07:23           8152 Terms.tsx
 
+This is the directory Structure.
 
-I want the Services.tsx to be show as a curvy vertical road, in which as I scroll down, the car moves through the road through the points as:
-1. Strategy
-Strategy is the foundation of everything we do at Crayons. Our strategic thinking is human-centric and focuses on solutions that go beyond conventions, media, and formats.
-2. Creative
-At Crayons we produce creatives which not only win consumers hearts but awards accolades too More than 65 Awards in last 3 years.
-3. Digital
-Everyone has digital technology. It’s what you do with it that matters.
-4. Media
-It’s not only what you put in your ad that matters, but where you put your ad.
-5. Events
-When events need to be truly eventful.
-6. WOW
-It’s all about location, location, location.
+Current problem: Every component has different 3D effects, I want all of them have to have consistent same 3d effects. 
+Solution I was implementing: I have created a component called ThreeDBackground. I have modified About.tsx, Services.tsx, and Hero.tsx to use this component. For example, I have modified About.tsx like this:
 
-Please make a beautiful animation. Services.tsx is a section of the home page. So it should be implemented as according to that. 
+import React, { useState, useEffect, useRef } from 'react';
+import { Card, CardContent } from "@/components/ui/card";
+import { Award, Users, Globe, TrendingUp } from "lucide-react";
+import ThreeDBackground from "@/components/3d/ThreeDBackground";
 
+const About = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-This is my Index.tsx:
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Services from "@/components/Services";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import Testimonials from "@/components/Testimonials";
+  const achievements = [
+    {
+      icon: <Award className="w-8 h-8" />,
+      number: "10+",
+      label: "Years of Excellence",
+      description: "Leading digital marketing solutions since 2014"
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      number: "1000+",
+      label: "Strategic Partnerships",
+      description: "Successfully connecting advertisers and publishers"
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      number: "50+",
+      label: "Markets Reached",
+      description: "Global digital marketing presence"
+    },
+    {
+      icon: <TrendingUp className="w-8 h-8" />,
+      number: "95%",
+      label: "Project Success Rate",
+      description: "Consistently exceeding digital marketing objectives"
+    }
+  ];
 
-const Index = () => {
+  useEffect(() => {
+    // Intersection Observer for visibility
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (observer && sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen">
-      <Hero />
-      <div id="about">
-        <About />
+    <section ref={sectionRef} className="py-20 bg-background relative overflow-hidden">
+      {/* 3D Background */}
+      <ThreeDBackground 
+        opacity={0.3}
+        particleCount={100}
+        shapeCount={12}
+        colorScheme="blue"
+        animationSpeed={1}
+        className={`opacity-30 ${isVisible ? 'blur-0' : 'blur-sm'} transition-all duration-1000`}
+      />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Content with Animation */}
+          <div className={`transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              About <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent animate-pulse">KRAYONS GROUP</span>
+            </h2>
+            
+            <div className="space-y-6 text-lg text-muted-foreground">
+              <p className={`transition-all duration-1000 delay-200 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
+                <strong className="text-foreground">Krayons Group</strong> is your premier partner for 
+                <strong className="text-foreground"> digital marketing, integrated communication, and project-based solutions</strong>. 
+                We excel at forging strategic partnerships that effectively connect clients, facilitate seamless 
+                communication, and deliver exceptional project outcomes.
+              </p>
+              
+              <p className={`transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
+                Our expertise spans <strong className="text-foreground">cutting-edge digital strategies</strong>, comprehensive 
+                communication across all channels, and tailored project management that consistently surpasses expectations. 
+                We don't just meet industry standards – <strong className="text-foreground">we set them</strong>.
+              </p>
+              
+              <p className={`transition-all duration-1000 delay-400 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
+                Krayons is more than an affiliate marketing platform; we are <strong className="text-foreground">architects 
+                of successful communication strategies</strong> and project-based collaborations. Our team comprises seasoned 
+                professionals who understand the intricacies of the digital landscape.
+              </p>
+            </div>
+
+            {/* Mission Statement with 3D hover effect */}
+            <div className={`mt-8 p-6 bg-gradient-to-r from-blue-50/50 to-purple-50/50 rounded-lg border-l-4 border-blue-500 transition-all duration-1000 delay-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+              <h3 className="font-semibold text-foreground mb-2">Our Mission</h3>
+              <p className="text-muted-foreground">
+                To facilitate the connection between advertisers and publishers, enabling them to attain their 
+                digital marketing objectives through our dynamic platform that broadens reach and monetizes online assets.
+              </p>
+            </div>
+          </div>
+
+          {/* Achievements Grid with 3D effects */}
+          <div className={`grid grid-cols-2 gap-6 transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
+            {achievements.map((achievement, index) => (
+              <div 
+                key={index} 
+                className={`transition-all duration-700 transform ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}
+                style={{
+                  transitionDelay: `${index * 200 + 300}ms`,
+                }}
+              >
+                <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-blue-50/50 backdrop-blur-sm hover:from-blue-50/80 hover:to-purple-50/50 transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-blue-500/20 transform-gpu">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-purple-400/0 to-cyan-400/0 group-hover:from-blue-400/10 group-hover:via-purple-400/10 group-hover:to-cyan-400/10 transition-all duration-500"></div>
+                  <CardContent className="p-6 text-center relative z-10">
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-3 rounded-full text-blue-600 group-hover:from-blue-500/20 group-hover:to-purple-500/20 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 transform-gpu">
+                        <div className="group-hover:animate-bounce">
+                          {achievement.icon}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300 cursor-default">
+                      {achievement.number}
+                    </div>
+                    <div className="font-semibold text-foreground mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                      {achievement.label}
+                    </div>
+                    <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                      {achievement.description}
+                    </div>
+                  </CardContent>
+                  
+                  {/* Animated border */}
+                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 p-[1px]">
+                      <div className="w-full h-full rounded-lg bg-white/90"></div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <div id="services">
-        <Services />
-      </div>
-      <div id="why-us">
-        <WhyChooseUs />
-      </div>
-      <div id="testimonials">
-        <Testimonials />
-      </div>
-    </div>
+      
+      {/* Additional floating elements */}
+      <div className="absolute top-20 left-10 w-2 h-2 bg-blue-500 rounded-full animate-ping opacity-50"></div>
+      <div className="absolute top-40 right-20 w-3 h-3 bg-purple-500 rounded-full animate-pulse opacity-40"></div>
+      <div className="absolute bottom-20 left-20 w-1 h-1 bg-cyan-500 rounded-full animate-bounce opacity-60"></div>
+      <div className="absolute bottom-40 right-10 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-30" style={{animationDelay: '1s'}}></div>
+    </section>
   );
 };
 
-export default Index;
+export default About;
 
-My website is in light mode. 
+Now I want other components to use this component as well.
+
+
+Do it for me for Services.tsx. Fill in the empty spaces with 3d shapes. 
+
+This is ThreeDBackground.tsx:
+import React, { useRef, useEffect } from 'react';
+import * as THREE from 'three';
+
+interface ThreeDBackgroundProps {
+  opacity?: number;
+  particleCount?: number;
+  shapeCount?: number;
+  colorScheme?: 'blue' | 'purple' | 'cyan' | 'mixed';
+  animationSpeed?: number;
+  className?: string;
+}
+
+const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({
+  opacity = 0.3,
+  particleCount = 80,
+  shapeCount = 12,
+  colorScheme = 'mixed',
+  animationSpeed = 1,
+  className = ''
+}) => {
+  const mountRef = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<THREE.Scene>();
+  const rendererRef = useRef<THREE.WebGLRenderer>();
+  const cameraRef = useRef<THREE.PerspectiveCamera>();
+  const animationRef = useRef<number>();
+  const meshesRef = useRef<THREE.Mesh[]>([]);
+
+  useEffect(() => {
+    if (!mountRef.current) return;
+
+    // Scene setup
+    const scene = new THREE.Scene();
+    sceneRef.current = scene;
+
+    // Camera setup
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 0, 10);
+    cameraRef.current = camera;
+
+    // Renderer setup
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
+    rendererRef.current = renderer;
+    mountRef.current.appendChild(renderer.domElement);
+
+    // Consistent geometries
+    const geometries = [
+      new THREE.IcosahedronGeometry(0.7, 0),
+      new THREE.OctahedronGeometry(0.6, 0),
+      new THREE.TetrahedronGeometry(0.8, 0),
+      new THREE.BoxGeometry(0.8, 0.8, 0.8),
+      new THREE.SphereGeometry(0.6, 16, 16),
+      new THREE.ConeGeometry(0.5, 1, 8)
+    ];
+
+    // Color schemes
+    const colorSchemes = {
+      blue: [0x3b82f6, 0x1e40af, 0x60a5fa, 0x93c5fd],
+      purple: [0x8b5cf6, 0x7c3aed, 0xa78bfa, 0xc4b5fd],
+      cyan: [0x06b6d4, 0x0891b2, 0x22d3ee, 0x67e8f9],
+      mixed: [0x3b82f6, 0x8b5cf6, 0x06b6d4, 0x10b981, 0xf59e0b, 0xef4444]
+    };
+
+    const colors = colorSchemes[colorScheme];
+
+    // Consistent materials
+    const materials = colors.map(color => 
+      new THREE.MeshPhongMaterial({ 
+        color,
+        shininess: 30, 
+        transparent: true, 
+        opacity: opacity * 0.6,
+        wireframe: true
+      })
+    );
+
+    const meshes: THREE.Mesh[] = [];
+
+    // Create floating objects with consistent positioning
+    for (let i = 0; i < shapeCount; i++) {
+      const geometry = geometries[i % geometries.length];
+      const material = materials[i % materials.length];
+      const mesh = new THREE.Mesh(geometry, material);
+      
+      // Consistent positioning pattern
+      const angle = (i / shapeCount) * Math.PI * 2;
+      const radius = 6 + Math.random() * 4;
+      const layer = Math.floor(i / 4); // 4 objects per layer
+      
+      mesh.position.x = Math.cos(angle) * radius;
+      mesh.position.y = Math.sin(angle) * radius * 0.6 + (layer - 1) * 2;
+      mesh.position.z = -2 - Math.random() * 3;
+      
+      // Random rotation
+      mesh.rotation.x = Math.random() * Math.PI;
+      mesh.rotation.y = Math.random() * Math.PI;
+      mesh.rotation.z = Math.random() * Math.PI;
+      
+      // Store animation data
+      mesh.userData = {
+        initialX: mesh.position.x,
+        initialY: mesh.position.y,
+        initialZ: mesh.position.z,
+        floatSpeed: (0.3 + Math.random() * 0.3) * animationSpeed,
+        rotationSpeed: (0.005 + Math.random() * 0.01) * animationSpeed,
+        offsetPhase: Math.random() * Math.PI * 2
+      };
+      
+      meshes.push(mesh);
+      scene.add(mesh);
+    }
+
+    meshesRef.current = meshes;
+
+    // Consistent lighting setup
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
+
+    const pointLight = new THREE.PointLight(colors[0], 0.3, 15);
+    pointLight.position.set(-5, 3, 5);
+    scene.add(pointLight);
+
+    // Consistent particle system
+    const particlesGeometry = new THREE.BufferGeometry();
+    const posArray = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 30;
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.02,
+      color: colors[0],
+      transparent: true,
+      opacity: opacity * 0.8
+    });
+
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    // Consistent animation loop
+    const animate = () => {
+      animationRef.current = requestAnimationFrame(animate);
+
+      const time = Date.now() * 0.001;
+
+      // Animate floating objects with consistent pattern
+      meshes.forEach((mesh, index) => {
+        const userData = mesh.userData;
+        
+        // Consistent floating motion
+        mesh.position.y = userData.initialY + Math.sin(time * userData.floatSpeed + userData.offsetPhase) * 0.4;
+        mesh.position.x = userData.initialX + Math.cos(time * userData.floatSpeed * 0.8 + userData.offsetPhase) * 0.3;
+        mesh.position.z = userData.initialZ + Math.sin(time * userData.floatSpeed * 0.6 + userData.offsetPhase) * 0.2;
+        
+        // Consistent rotation
+        mesh.rotation.x += userData.rotationSpeed;
+        mesh.rotation.y += userData.rotationSpeed * 0.8;
+        mesh.rotation.z += userData.rotationSpeed * 0.6;
+      });
+
+      // Animate particles consistently
+      particlesMesh.rotation.y += 0.001 * animationSpeed;
+      particlesMesh.rotation.x += 0.0005 * animationSpeed;
+
+      // Subtle camera movement
+      if (cameraRef.current) {
+        cameraRef.current.position.x = Math.sin(time * 0.04) * 0.05;
+        cameraRef.current.position.y = Math.cos(time * 0.05) * 0.03;
+        cameraRef.current.lookAt(0, 0, 0);
+      }
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    // Consistent mouse interaction
+    const handleMouseMove = (event: MouseEvent) => {
+      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      meshes.forEach((mesh, index) => {
+        const factor = (index % 3 + 1) * 0.05;
+        mesh.rotation.x += mouseY * factor * 0.005;
+        mesh.rotation.y += mouseX * factor * 0.005;
+      });
+    };
+
+    // Resize handler
+    const handleResize = () => {
+      if (!cameraRef.current || !rendererRef.current) return;
+      
+      cameraRef.current.aspect = window.innerWidth / window.innerHeight;
+      cameraRef.current.updateProjectionMatrix();
+      rendererRef.current.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+      
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      
+      if (mountRef.current && rendererRef.current) {
+        mountRef.current.removeChild(rendererRef.current.domElement);
+      }
+      
+      // Dispose of Three.js objects
+      geometries.forEach(geo => geo.dispose());
+      materials.forEach(mat => mat.dispose());
+      particlesGeometry.dispose();
+      particlesMaterial.dispose();
+      rendererRef.current?.dispose();
+    };
+  }, [opacity, particleCount, shapeCount, colorScheme, animationSpeed]);
+
+  return (
+    <div 
+      ref={mountRef} 
+      className={`absolute inset-0 ${className}`}
+      style={{ pointerEvents: 'none' }}
+    />
+  );
+};
+
+export default ThreeDBackground;
+
+This is my Services.tsx:
+import React, { useEffect, useRef, useState } from 'react';
+
+const Services = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
+
+  const services = [
+    {
+      id: 'strategy',
+      title: 'Strategy',
+      description: 'Strategy is the foundation of everything we do at Krayons. Our strategic thinking is human-centric and focuses on solutions that go beyond conventions, media, and formats.',
+      icon: '🎯',
+      color: 'from-blue-500 to-cyan-500',
+      bgColor: 'bg-blue-50'
+    },
+    {
+      id: 'creative',
+      title: 'Creative',
+      description: 'At Krayons we produce creatives which not only win consumers hearts but awards accolades too. More than 65 Awards in last 3 years.',
+      icon: '🎨',
+      color: 'from-purple-500 to-pink-500',
+      bgColor: 'bg-purple-50'
+    },
+    {
+      id: 'digital',
+      title: 'Digital',
+      description: 'Everyone has digital technology. It\'s what you do with it that matters.',
+      icon: '💻',
+      color: 'from-green-500 to-teal-500',
+      bgColor: 'bg-green-50'
+    },
+    {
+      id: 'media',
+      title: 'Media',
+      description: 'It\'s not only what you put in your ad that matters, but where you put your ad.',
+      icon: '📺',
+      color: 'from-orange-500 to-red-500',
+      bgColor: 'bg-orange-50'
+    },
+    {
+      id: 'events',
+      title: 'Events',
+      description: 'When events need to be truly eventful.',
+      icon: '🎪',
+      color: 'from-indigo-500 to-purple-500',
+      bgColor: 'bg-indigo-50'
+    },
+    {
+      id: 'wow',
+      title: 'WOW',
+      description: 'It\'s all about location, location, location.',
+      icon: '✨',
+      color: 'from-yellow-500 to-orange-500',
+      bgColor: 'bg-yellow-50'
+    }
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const section = sectionRef.current;
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      // Calculate if section is in viewport
+      const sectionProgress = Math.max(0, Math.min(1, 
+        (scrollY + windowHeight / 2 - sectionTop) / sectionHeight
+      ));
+
+      // Calculate which step should be active based on scroll progress
+      const newActiveStep = Math.min(
+        services.length - 1,
+        Math.floor(sectionProgress * services.length)
+      );
+
+      setActiveStep(newActiveStep);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [services.length]);
+
+  return (
+    <section 
+      ref={sectionRef}
+      className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
+      style={{ minHeight: '200vh' }} // Ensure enough height for scroll animation
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 20% 50%, #4f46e5 0%, transparent 50%),
+                           radial-gradient(circle at 80% 20%, #06b6d4 0%, transparent 50%),
+                           radial-gradient(circle at 40% 80%, #8b5cf6 0%, transparent 50%)`
+        }} />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent mb-6">
+            Our Journey
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            From strategy to wow moments, we guide you through every step of your brand's transformation journey.
+          </p>
+        </div>
+
+        {/* Journey Timeline */}
+        <div className="max-w-6xl mx-auto">
+          <div className="relative">
+            {/* Central Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-gray-200 via-gray-300 to-gray-200 rounded-full" />
+            
+            {/* Progress Line */}
+            <div 
+              className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-orange-500 rounded-full transition-all duration-1000 ease-out"
+              style={{
+                height: `${(activeStep + 1) * (100 / services.length)}%`,
+                top: 0
+              }}
+            />
+
+            {/* Service Steps */}
+            {services.map((service, index) => (
+              <div
+                key={service.id}
+                className={`relative flex items-center mb-32 transition-all duration-1000 ease-out ${
+                  index % 2 === 0 ? 'justify-start' : 'justify-end'
+                }`}
+              >
+                {/* Timeline Node */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
+                  <div className={`w-16 h-16 rounded-full border-4 border-white shadow-lg flex items-center justify-center text-2xl transition-all duration-500 ${
+                    index <= activeStep 
+                      ? `bg-gradient-to-br ${service.color} scale-110` 
+                      : 'bg-gray-200 scale-100'
+                  }`}>
+                    {index <= activeStep ? service.icon : '⚪'}
+                  </div>
+                  
+                  {/* Step Number */}
+                  <div className={`absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 ${
+                    index <= activeStep 
+                      ? 'bg-white text-gray-800 shadow-md' 
+                      : 'bg-gray-300 text-gray-500'
+                  }`}>
+                    {index + 1}
+                  </div>
+                </div>
+
+                {/* Service Card */}
+                <div className={`w-5/12 ${index % 2 === 0 ? 'mr-auto pr-16' : 'ml-auto pl-16'}`}>
+                  <div className={`relative group transition-all duration-700 transform ${
+                    index <= activeStep 
+                      ? 'translate-y-0 opacity-100 scale-100' 
+                      : 'translate-y-8 opacity-60 scale-95'
+                  }`}>
+                    {/* Card Glow Effect */}
+                    {index === activeStep && (
+                      <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-20 blur-xl rounded-2xl`} />
+                    )}
+                    
+                    {/* Main Card */}
+                    <div className={`relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 ${
+                      index === activeStep ? 'ring-2 ring-blue-200' : ''
+                    }`}>
+                      {/* Card Header */}
+                      <div className="flex items-center mb-4">
+                        <div className={`w-12 h-12 rounded-xl ${service.bgColor} flex items-center justify-center text-2xl mr-4 transition-all duration-300`}>
+                          {service.icon}
+                        </div>
+                        <h3 className={`text-2xl font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}>
+                          {service.title}
+                        </h3>
+                      </div>
+                      
+                      {/* Card Description */}
+                      <p className="text-gray-600 leading-relaxed text-lg">
+                        {service.description}
+                      </p>
+                      
+                      {/* Card Footer */}
+                      <div className={`mt-6 h-1 bg-gradient-to-r ${service.color} rounded-full transition-all duration-500 ${
+                        index <= activeStep ? 'w-full' : 'w-0'
+                      }`} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Journey Completion */}
+        <div className={`text-center mt-20 transition-all duration-1000 ${
+          activeStep >= services.length - 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="inline-flex items-center bg-gradient-to-r from-green-500 to-teal-500 text-white px-8 py-4 rounded-full shadow-lg">
+            <span className="text-2xl mr-3">🎉</span>
+            <span className="text-xl font-semibold">Journey Complete!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Services;
