@@ -73,12 +73,15 @@ const Footer = () => {
             © {currentYear} KRAYONS GROUP. All rights reserved.
           </div>
           
-          <div className="flex space-x-6 text-sm">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm">
             <a href="/privacy" className="text-muted-foreground hover:text-primary transition-smooth">
               Privacy Policy
             </a>
             <a href="/terms" className="text-muted-foreground hover:text-primary transition-smooth">
               Terms of Service
+            </a>
+            <a href="/refund" className="text-muted-foreground hover:text-primary transition-smooth">
+              Refund Policy
             </a>
           </div>
         </div>

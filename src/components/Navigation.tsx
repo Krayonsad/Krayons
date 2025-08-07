@@ -22,16 +22,33 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Check if we're on the home page
+  const isOnHomePage = () => {
+    return window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname.endsWith('/');
+  };
+
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (isOnHomePage()) {
+      // If on home page, scroll to section
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If on another page, redirect to home page with hash
+      window.location.href = `/${href}`;
     }
     setIsMobileMenuOpen(false);
   };
 
   const handleLogoClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isOnHomePage()) {
+      // If on home page, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // If on another page, redirect to home page
+      window.location.href = '/';
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -53,6 +70,7 @@ const Navigation = () => {
             <button 
               onClick={handleLogoClick}
               className="group relative text-2xl font-bold transition-all duration-500 transform hover:scale-110"
+              title="Go to Home Page"
             >
               <span 
                 className="relative z-10 bg-gradient-to-r from-orange-600 via-blue-800 via-yellow-500 via-violet-600 via-red-600 via-pink-500 to-cyan-500 bg-clip-text text-transparent hover:from-orange-700 hover:via-blue-900 hover:via-yellow-600 hover:via-violet-700 hover:via-red-700 hover:via-pink-600 hover:to-cyan-600 transition-all duration-500 text-3xl"
@@ -79,6 +97,7 @@ const Navigation = () => {
                 onClick={() => scrollToSection(link.href)}
                 className="group relative px-4 py-2 text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium overflow-hidden rounded-lg"
                 style={{ animationDelay: `${index * 100}ms` }}
+                title={isOnHomePage() ? `Go to ${link.name} section` : `Go to Home Page - ${link.name} section`}
               >
                 <span className="relative z-10 transition-colors duration-300">
                   {link.name}
@@ -148,6 +167,7 @@ const Navigation = () => {
                     animationDelay: `${index * 100}ms`,
                     animationFillMode: 'both'
                   }}
+                  title={isOnHomePage() ? `Go to ${link.name} section` : `Go to Home Page - ${link.name} section`}
                 >
                   <span className="relative">
                     {link.name}
