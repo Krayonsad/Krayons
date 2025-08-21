@@ -4,15 +4,14 @@ import ThreeDBackground from "@/components/3d/ThreeDBackground";
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
-// Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDzqGpJHM3vObDG4MggKBcRw5Mmz6Y1V_M",
-  authDomain: "krayons-ca5fd.firebaseapp.com",
-  projectId: "krayons-ca5fd",
-  storageBucket: "krayons-ca5fd.firebasestorage.app",
-  messagingSenderId: "170700101143",
-  appId: "1:170700101143:web:18c6991983c281ce12ee52",
-  measurementId: "G-W51CKRESVT"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
