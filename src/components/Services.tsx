@@ -17,61 +17,61 @@ const Services = () => {
       id: 'strategy',
       title: 'Strategic Planning',
       description: 'We develop comprehensive strategies that align with your business objectives, market dynamics, and competitive landscape to ensure sustainable growth.',
-      icon: '🎯',
+      icon: '1',
       gradient: 'from-slate-600 via-slate-700 to-slate-800',
       accentColor: 'from-blue-600 to-indigo-600',
       bgColor: 'bg-slate-50',
-      stats: '95% Success Rate'
+      stats: ''
     },
     {
       id: 'creative',
       title: 'Creative Excellence',
       description: 'Our award-winning creative team delivers innovative solutions that captivate audiences and drive meaningful engagement across all touchpoints.',
-      icon: '🎨',
+      icon: '2',
       gradient: 'from-purple-600 via-purple-700 to-indigo-800',
       accentColor: 'from-purple-600 to-pink-600',
       bgColor: 'bg-purple-50',
-      stats: '65+ Awards'
+      stats: ''
     },
     {
       id: 'digital',
       title: 'Digital Innovation',
       description: 'Leveraging cutting-edge technology and data-driven insights to create digital experiences that transform how customers interact with your brand.',
-      icon: '💻',
+      icon: '3',
       gradient: 'from-emerald-600 via-teal-700 to-cyan-800',
       accentColor: 'from-emerald-600 to-teal-600',
       bgColor: 'bg-emerald-50',
-      stats: '300% ROI Average'
+      stats: ''
     },
     {
       id: 'media',
       title: 'Media Strategy',
       description: 'Strategic media placement and optimization across traditional and digital channels to maximize reach, engagement, and conversion rates.',
-      icon: '📺',
+      icon: '4',
       gradient: 'from-orange-600 via-red-600 to-pink-700',
       accentColor: 'from-orange-600 to-red-600',
       bgColor: 'bg-orange-50',
-      stats: '2B+ Impressions'
+      stats: ''
     },
     {
       id: 'events',
       title: 'Experience Design',
       description: 'Creating immersive brand experiences and memorable events that forge lasting connections between your brand and your audience.',
-      icon: '🎪',
+      icon: '5',
       gradient: 'from-violet-600 via-purple-700 to-fuchsia-800',
       accentColor: 'from-violet-600 to-purple-600',
       bgColor: 'bg-violet-50',
-      stats: '500K+ Attendees'
+      stats: ''
     },
     {
       id: 'transformation',
       title: 'Brand Transformation',
       description: 'Complete brand evolution that positions your company for future success while honoring your core values and heritage.',
-      icon: '✨',
+      icon: '6',
       gradient: 'from-amber-600 via-orange-600 to-red-700',
       accentColor: 'from-amber-600 to-orange-600',
       bgColor: 'bg-amber-50',
-      stats: '100% Satisfaction'
+      stats: ''
     }
   ];
 
@@ -263,7 +263,7 @@ useEffect(() => {
                   transitionDelay: `${index * 100}ms`
                 }}
               >
-                {/* Enhanced Timeline Node with 3D depth */}
+                {/* Enhanced Timeline Node with 3D depth - REMOVED animate-bounce */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
                   <div className={`relative w-20 h-20 rounded-full border-4 border-white shadow-2xl flex items-center justify-center text-2xl transition-all duration-700 hover:scale-125 hover:rotate-6 transform-gpu ${
                     index <= activeStep 
@@ -302,7 +302,6 @@ useEffect(() => {
                     style={{
                       boxShadow: index <= activeStep ? '0 4px 15px rgba(0,0,0,0.2)' : '0 2px 8px rgba(0,0,0,0.1)'
                     }}>
-                      STEP {index + 1}
                     </div>
                   </div>
                 </div>
@@ -337,9 +336,7 @@ useEffect(() => {
                             : '0 10px 30px rgba(0,0,0,0.05), 0 4px 15px rgba(0,0,0,0.04)'
                         }}>
                           <div className="flex items-center mb-4">
-                            <div className={`w-12 h-12 rounded-xl ${service.bgColor} flex items-center justify-center text-xl mr-4 transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-110 hover:rotate-3 transform-gpu ${
-                              index <= activeStep ? 'animate-bounce' : ''
-                            } border border-gray-100`}>
+                            <div className={`w-12 h-12 rounded-xl ${service.bgColor} flex items-center justify-center text-xl mr-4 transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-110 hover:rotate-3 transform-gpu border border-gray-100`}>
                               {service.icon}
                             </div>
                             <div>
@@ -485,9 +482,7 @@ useEffect(() => {
                             : '0 10px 30px rgba(0,0,0,0.05), 0 4px 15px rgba(0,0,0,0.04)'
                         }}>
                           <div className="flex items-center mb-4">
-                            <div className={`w-12 h-12 rounded-xl ${service.bgColor} flex items-center justify-center text-xl mr-4 transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-110 hover:rotate-3 transform-gpu ${
-                              index <= activeStep ? 'animate-bounce' : ''
-                            } border border-gray-100`}>
+                            <div className={`w-12 h-12 rounded-xl ${service.bgColor} flex items-center justify-center text-xl mr-4 transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-110 hover:rotate-3 transform-gpu border border-gray-100`}>
                               {service.icon}
                             </div>
                             <div>

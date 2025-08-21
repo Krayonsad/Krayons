@@ -1,8 +1,82 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import ThreeDBackground from "@/components/3d/ThreeDBackground";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDzqGpJHM3vObDG4MggKBcRw5Mmz6Y1V_M",
+  authDomain: "krayons-ca5fd.firebaseapp.com",
+  projectId: "krayons-ca5fd",
+  storageBucket: "krayons-ca5fd.firebasestorage.app",
+  messagingSenderId: "170700101143",
+  appId: "1:170700101143:web:18c6991983c281ce12ee52",
+  measurementId: "G-W51CKRESVT"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+interface HeroContent {
+  heading: string;
+  description: string;
+}
 
 const Hero = () => {
+  const [heroContent, setHeroContent] = useState<HeroContent>({
+    heading: "Your Premier Digital Marketing Partner For Strategic Growth",
+    description: "Krayons Group excels at forging strategic partnerships that connect advertisers with publishers, delivering Performance Advertising, Content Solutions & Influencer Marketing with measurable results."
+  });
+  const [loading, setLoading] = useState(true);
+
+  // Fetch hero content from Firestore
+  const fetchHeroContent = async () => {
+    try {
+      const docRef = doc(db, 'settings', 'hero');
+      const docSnap = await getDoc(docRef);
+      
+      if (docSnap.exists()) {
+        const data = docSnap.data() as HeroContent;
+        setHeroContent(data);
+      }
+    } catch (error) {
+      console.error('Error fetching hero content:', error);
+      // Keep default content if fetch fails
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchHeroContent();
+    
+    // Add gradient animation styles to the document head
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes gradient-shift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Cleanup function to remove the style when component unmounts
+    return () => {
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
+    };
+  }, []);
+
   const handleGetInTouch = () => {
     window.location.href = 'mailto:reachus@krayons.co.in';
   };
@@ -13,6 +87,162 @@ const Hero = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Function to parse and render the heading with gradient spans
+  const renderHeading = (heading: string) => {
+    // Define patterns for gradient highlighting with enhanced animations
+    const gradientPatterns = [
+      {
+        regex: /Digital Marketing/gi,
+        className: "bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent",
+        style: {
+          backgroundSize: '200% 200%',
+          animation: 'gradient-shift 3s ease-in-out infinite'
+        }
+      },
+      {
+        regex: /Strategic Growth/gi,
+        className: "bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent",
+        style: {
+          backgroundSize: '200% 200%',
+          animation: 'gradient-shift 3s ease-in-out infinite',
+          animationDelay: '0.5s'
+        }
+      }
+    ];
+
+    let components: (string | JSX.Element)[] = [heading];
+
+    gradientPatterns.forEach((pattern, index) => {
+      const newComponents: (string | JSX.Element)[] = [];
+      
+      components.forEach((component, compIndex) => {
+        if (typeof component === 'string') {
+          const parts = component.split(pattern.regex);
+          const matches = component.match(pattern.regex);
+          
+          if (matches) {
+            for (let i = 0; i < parts.length; i++) {
+              if (parts[i]) {
+                newComponents.push(parts[i]);
+              }
+              if (i < matches.length) {
+                newComponents.push(
+                  <span 
+                    key={`gradient-${index}-${compIndex}-${i}`} 
+                    className={pattern.className}
+                    style={pattern.style}
+                  >
+                    {matches[i]}
+                  </span>
+                );
+              }
+            }
+          } else {
+            newComponents.push(component);
+          }
+        } else {
+          newComponents.push(component);
+        }
+      });
+      
+      components = newComponents;
+    });
+
+    return components;
+  };
+
+  // Function to parse and render the description with bold highlights and color transitions
+  const renderDescription = (description: string) => {
+    // Define patterns for bold highlighting with colors and transitions
+    const boldPatterns = [
+      {
+        regex: /Performance Advertising/gi,
+        className: "font-bold bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 bg-clip-text text-transparent",
+        style: {
+          backgroundSize: '200% 200%',
+          animation: 'gradient-shift 2.5s ease-in-out infinite'
+        }
+      },
+      {
+        regex: /Content Solutions/gi,
+        className: "font-bold bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 bg-clip-text text-transparent",
+        style: {
+          backgroundSize: '200% 200%',
+          animation: 'gradient-shift 2.5s ease-in-out infinite',
+          animationDelay: '0.3s'
+        }
+      },
+      {
+        regex: /Influencer Marketing/gi,
+        className: "font-bold bg-gradient-to-r from-cyan-500 via-cyan-600 to-cyan-700 bg-clip-text text-transparent",
+        style: {
+          backgroundSize: '200% 200%',
+          animation: 'gradient-shift 2.5s ease-in-out infinite',
+          animationDelay: '0.6s'
+        }
+      }
+    ];
+
+    let components: (string | JSX.Element)[] = [description];
+
+    boldPatterns.forEach((pattern, index) => {
+      const newComponents: (string | JSX.Element)[] = [];
+      
+      components.forEach((component, compIndex) => {
+        if (typeof component === 'string') {
+          const parts = component.split(pattern.regex);
+          const matches = component.match(pattern.regex);
+          
+          if (matches) {
+            for (let i = 0; i < parts.length; i++) {
+              if (parts[i]) {
+                newComponents.push(parts[i]);
+              }
+              if (i < matches.length) {
+                newComponents.push(
+                  <span 
+                    key={`bold-${index}-${compIndex}-${i}`} 
+                    className={pattern.className}
+                    style={pattern.style}
+                  >
+                    {matches[i]}
+                  </span>
+                );
+              }
+            }
+          } else {
+            newComponents.push(component);
+          }
+        } else {
+          newComponents.push(component);
+        }
+      });
+      
+      components = newComponents;
+    });
+
+    return components;
+  };
+
+  if (loading) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+        <ThreeDBackground 
+          opacity={0.2}
+          particleCount={100}
+          shapeCount={8}
+          colorScheme="mixed"
+          animationSpeed={0.8}
+          className="z-0"
+        />
+        <div className="relative z-10 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
@@ -31,26 +261,12 @@ const Hero = () => {
         <div className="space-y-8">
           {/* Main Tagline */}
           <h1 className="text-5xl md:text-5xl my-20 font-bold text-gray-900 leading-tight animate-fade-in-up">
-            Your Premier{" "}
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent animate-pulse">
-              Digital Marketing
-            </span>{" "}
-            Partner For{" "}
-            <span 
-              className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent animate-pulse" 
-              style={{animationDelay: '0.5s'}}
-            >
-              Strategic Growth
-            </span>
+            {renderHeading(heroContent.heading)}
           </h1>
           
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed animate-fade-in-up animate-delay-200">
-            Krayons Group excels at forging strategic partnerships that connect advertisers with publishers, 
-            delivering{" "}
-            <strong className="text-blue-600">Performance Advertising</strong>, 
-            <strong className="text-purple-600"> Content Solutions</strong> &{" "}
-            <strong className="text-cyan-600">Influencer Marketing</strong> with measurable results.
+            {renderDescription(heroContent.description)}
           </p>
           
           {/* CTA Buttons */}

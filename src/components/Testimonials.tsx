@@ -72,93 +72,63 @@ const Testimonials = () => {
   const brandLogos = [
     { 
       name: "Ministry of Jal Shakti", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/200px-Emblem_of_India.svg.png",
-      category: "Government",
-      colorScheme: "from-red-100 to-orange-100"
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/200px-Emblem_of_India.svg.png"
     },
     { 
       name: "Bharti Airtel", 
-      logo: "https://images.seeklogo.com/logo-png/16/2/airtel-logo-png_seeklogo-168291.png",
-      category: "Telecommunications",
-      colorScheme: "from-red-100 to-pink-100"
+      logo: "https://images.seeklogo.com/logo-png/16/2/airtel-logo-png_seeklogo-168291.png"
     },
     { 
       name: "Mahindra COMVIVA", 
-      logo: "https://1000logos.net/wp-content/uploads/2020/04/Mahindra-Logo-2012.png",
-      category: "Technology Solutions",
-      colorScheme: "from-orange-100 to-yellow-100"
+      logo: "https://1000logos.net/wp-content/uploads/2020/04/Mahindra-Logo-2012.png"
     },
     { 
       name: "MACROKIOSK", 
-      logo: "https://macrokiosk.com/assets/img/og-img/og-image-macrokiosk.png",
-      category: "Digital Payments",
-      colorScheme: "from-green-100 to-emerald-100"
+      logo: "https://macrokiosk.com/assets/img/og-img/og-image-macrokiosk.png"
     },
     { 
       name: "India Tourism Development Corporation", 
-      logo: "https://e7.pngegg.com/pngimages/423/867/png-clipart-india-tourism-development-corporation-limited-company-civil-engineering-india-brand-equity-foundation-cost-effective-company-text.png",
-      category: "Tourism",
-      colorScheme: "from-blue-100 to-cyan-100"
+      logo: "https://e7.pngegg.com/pngimages/423/867/png-clipart-india-tourism-development-corporation-limited-company-civil-engineering-india-brand-equity-foundation-cost-effective-company-text.png"
     },
     { 
       name: "Namami Gange", 
-      logo: "https://nmcg.nic.in/logo/Namami%20Gange%20Logo_Hindi.jpg",
-      category: "Environmental Initiative",
-      colorScheme: "from-teal-100 to-green-100"
+      logo: "https://nmcg.nic.in/logo/Namami%20Gange%20Logo_Hindi.jpg"
     },
     { 
       name: "DigiTantra", 
-      logo: "https://cdn.prod.website-files.com/64b3e49ec17f22371194291a/65531c82fd58535248724d82_OG-Image.png",
-      category: "Digital Solutions",
-      colorScheme: "from-purple-100 to-violet-100"
+      logo: "https://cdn.prod.website-files.com/64b3e49ec17f22371194291a/65531c82fd58535248724d82_OG-Image.png"
     },
     { 
       name: "Mobi2Fun", 
-      logo: "https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1450613668/s2m8wz2zafohudracjsz.png",
-      category: "Mobile Technology",
-      colorScheme: "from-indigo-100 to-blue-100"
+      logo: "https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/v1450613668/s2m8wz2zafohudracjsz.png"
     },
     { 
       name: "Infobip", 
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5qXUM4Q3p99Rk6ENjtjMbaJYGFsbwtuYUOw&s",
-      category: "Communications Platform",
-      colorScheme: "from-pink-100 to-rose-100"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5qXUM4Q3p99Rk6ENjtjMbaJYGFsbwtuYUOw&s"
     },
     { 
       name: "Ministry of Urban Development", 
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS91M-t3DBHQyuMKjVybiqiXOrhB1dTqADNKA&s",
-      category: "Government",
-      colorScheme: "from-yellow-100 to-amber-100"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS91M-t3DBHQyuMKjVybiqiXOrhB1dTqADNKA&s"
     },
     { 
       name: "Osho World", 
-      logo: "https://images.seeklogo.com/logo-png/10/1/osho-logo-png_seeklogo-104432.png",
-      category: "Spiritual & Wellness",
-      colorScheme: "from-lime-100 to-green-100"
+      logo: "https://images.seeklogo.com/logo-png/10/1/osho-logo-png_seeklogo-104432.png"
     },
     { 
       name: "WOTR", 
-      logo: "https://projectheena.com/uploads/ngo/31147029532871/profileImage/images/wotr-pune.jpg",
-      category: "Water & Development",
-      colorScheme: "from-cyan-100 to-teal-100"
+      logo: "https://projectheena.com/uploads/ngo/31147029532871/profileImage/images/wotr-pune.jpg"
     },
     { 
       name: "Google", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-      category: "Technology",
-      colorScheme: "from-red-100 via-yellow-100 to-blue-100"
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
     },
     { 
       name: "Apple", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
-      category: "Technology",
-      colorScheme: "from-gray-100 to-slate-100"
+      logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
     },
     { 
       name: "Amazon", 
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-      category: "E-commerce",
-      colorScheme: "from-orange-100 to-yellow-100"
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
     }
   ];
 
@@ -258,33 +228,27 @@ const Testimonials = () => {
           </h3>
           
           {/* First Row - Scroll Right */}
-          <div className="relative mb-6 overflow-hidden">
-            <div className="flex animate-scroll-right space-x-8 whitespace-nowrap">
+          <div className="relative mb-8 overflow-hidden">
+            <div className="flex animate-scroll-right space-x-12 whitespace-nowrap">
               {[...brandLogos.slice(0, 6), ...brandLogos.slice(0, 6)].map((brand, index) => (
                 <div 
                   key={`row1-${index}`}
-                  className={`flex-shrink-0 bg-gradient-to-br ${brand.colorScheme} backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group cursor-pointer border border-white/50 min-w-[180px]`}
+                  className="flex-shrink-0 transition-all duration-300 hover:scale-110 cursor-pointer hover:drop-shadow-lg"
                 >
-                  <div className="flex items-center justify-center h-16 mb-2">
+                  <div className="w-32 h-20 flex items-center justify-center bg-white/80 rounded-lg shadow-sm border border-gray-100 p-3">
                     <img 
                       src={brand.logo} 
                       alt={`${brand.name} logo`}
-                      className="max-h-12 max-w-24 object-contain filter group-hover:brightness-110 group-hover:saturate-110 transition-all duration-300"
+                      className="max-w-full max-h-full object-contain transition-transform duration-300"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
-                        const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
-                        if (fallback) fallback.style.display = 'block';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'w-full h-full flex items-center justify-center text-gray-600 font-semibold text-xs text-center';
+                        fallback.textContent = brand.name;
+                        target.parentElement?.appendChild(fallback);
                       }}
                     />
-                    <div className="logo-fallback hidden text-center">
-                      <div className="text-gray-700 font-semibold text-sm group-hover:text-purple-700 transition-colors">
-                        {brand.name}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-600 text-center group-hover:text-purple-700 transition-colors font-medium">
-                    {brand.category}
                   </div>
                 </div>
               ))}
@@ -292,33 +256,27 @@ const Testimonials = () => {
           </div>
 
           {/* Second Row - Scroll Left */}
-          <div className="relative mb-6 overflow-hidden">
-            <div className="flex animate-scroll-left space-x-8 whitespace-nowrap">
+          <div className="relative mb-8 overflow-hidden">
+            <div className="flex animate-scroll-left space-x-12 whitespace-nowrap">
               {[...brandLogos.slice(6, 12), ...brandLogos.slice(6, 12)].map((brand, index) => (
                 <div 
                   key={`row2-${index}`}
-                  className={`flex-shrink-0 bg-gradient-to-br ${brand.colorScheme} backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group cursor-pointer border border-white/50 min-w-[180px]`}
+                  className="flex-shrink-0 transition-all duration-300 hover:scale-110 cursor-pointer filter hover:brightness-110 hover:drop-shadow-lg"
                 >
-                  <div className="flex items-center justify-center h-16 mb-2">
+                  <div className="w-32 h-20 flex items-center justify-center bg-white/60 rounded-lg shadow-sm border border-gray-100 p-3">
                     <img 
                       src={brand.logo} 
                       alt={`${brand.name} logo`}
-                      className="max-h-12 max-w-24 object-contain filter group-hover:brightness-110 group-hover:saturate-110 transition-all duration-300"
+                      className="max-w-full max-h-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
-                        const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
-                        if (fallback) fallback.style.display = 'block';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'w-full h-full flex items-center justify-center text-gray-600 font-semibold text-xs text-center';
+                        fallback.textContent = brand.name;
+                        target.parentElement?.appendChild(fallback);
                       }}
                     />
-                    <div className="logo-fallback hidden text-center">
-                      <div className="text-gray-700 font-semibold text-sm group-hover:text-orange-700 transition-colors">
-                        {brand.name}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-600 text-center group-hover:text-orange-700 transition-colors font-medium">
-                    {brand.category}
                   </div>
                 </div>
               ))}
@@ -327,32 +285,26 @@ const Testimonials = () => {
 
           {/* Third Row - Scroll Right (Faster) */}
           <div className="relative overflow-hidden">
-            <div className="flex animate-scroll-right-fast space-x-8 whitespace-nowrap">
+            <div className="flex animate-scroll-right-fast space-x-12 whitespace-nowrap">
               {[...brandLogos.slice(12, 16), ...brandLogos.slice(0, 4), ...brandLogos.slice(12, 16), ...brandLogos.slice(0, 4)].map((brand, index) => (
                 <div 
                   key={`row3-${index}`}
-                  className={`flex-shrink-0 bg-gradient-to-br ${brand.colorScheme} backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group cursor-pointer border border-white/50 min-w-[180px]`}
+                  className="flex-shrink-0 transition-all duration-300 hover:scale-110 cursor-pointer filter hover:brightness-110 hover:drop-shadow-lg"
                 >
-                  <div className="flex items-center justify-center h-16 mb-2">
+                  <div className="w-32 h-20 flex items-center justify-center bg-white/60 rounded-lg shadow-sm border border-gray-100 p-3">
                     <img 
                       src={brand.logo} 
                       alt={`${brand.name} logo`}
-                      className="max-h-12 max-w-24 object-contain filter group-hover:brightness-110 group-hover:saturate-110 transition-all duration-300"
+                      className="max-w-full max-h-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
-                        const fallback = target.parentElement?.querySelector('.logo-fallback') as HTMLElement;
-                        if (fallback) fallback.style.display = 'block';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'w-full h-full flex items-center justify-center text-gray-600 font-semibold text-xs text-center';
+                        fallback.textContent = brand.name;
+                        target.parentElement?.appendChild(fallback);
                       }}
                     />
-                    <div className="logo-fallback hidden text-center">
-                      <div className="text-gray-700 font-semibold text-sm group-hover:text-cyan-700 transition-colors">
-                        {brand.name}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-600 text-center group-hover:text-cyan-700 transition-colors font-medium">
-                    {brand.category}
                   </div>
                 </div>
               ))}
