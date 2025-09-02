@@ -1,10 +1,85 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Globe, TrendingUp } from "lucide-react";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+
+// Firebase configuration using environment variables
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+interface AboutContent {
+  content: string;
+  updatedAt?: any;
+}
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [aboutContent, setAboutContent] = useState<AboutContent>({
+    content: "Krayons Group is your premier partner for digital marketing, integrated communication, and project-based solutions. We excel at forging strategic partnerships that effectively connect clients, facilitate seamless communication, and deliver exceptional project outcomes.\n\nOur expertise spans cutting-edge digital strategies, comprehensive communication across all channels, and tailored project management that consistently surpasses expectations. We don't just meet industry standards – we set them.\n\nKrayons is more than an affiliate marketing platform; we are architects of successful communication strategies and project-based collaborations. Our team comprises seasoned professionals who understand the intricacies of the digital landscape."
+  });
   const sectionRef = useRef<HTMLElement>(null);
+
+  // Fetch about content from Firestore
+  const fetchAboutContent = async () => {
+    try {
+      const docRef = doc(db, 'settings', 'about');
+      const docSnap = await getDoc(docRef);
+      
+      if (docSnap.exists()) {
+        const data = docSnap.data() as AboutContent;
+        setAboutContent(data);
+      }
+    } catch (error) {
+      console.error('Error fetching about content:', error);
+      // Keep default content if fetch fails
+    }
+  };
+
+  useEffect(() => {
+    fetchAboutContent();
+  }, []);
+
+  useEffect(() => {
+    // Intersection Observer for visibility
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (observer && sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  // Helper function to render paragraphs with styled keywords
+  const renderStyledParagraph = (text: string) => {
+    return text
+      .replace(/Krayons Group/g, '<strong class="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Krayons Group</strong>')
+      .replace(/digital marketing, integrated communication, and project-based solutions/g, '<strong class="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">digital marketing, integrated communication, and project-based solutions</strong>')
+      .replace(/cutting-edge digital strategies/g, '<strong class="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">cutting-edge digital strategies</strong>')
+      .replace(/we set them/g, '<strong class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">we set them</strong>')
+      .replace(/architects of successful communication strategies/g, '<strong class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">architects of successful communication strategies</strong>');
+  };
 
   const achievements = [
     {
@@ -65,26 +140,6 @@ const About = () => {
     }
   ];
 
-  useEffect(() => {
-    // Intersection Observer for visibility
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (observer && sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
     <section ref={sectionRef} className="py-20 bg-background relative overflow-hidden">
       {/* Enhanced colorful floating elements */}
@@ -108,24 +163,14 @@ const About = () => {
             </h2>
             
             <div className="space-y-6 text-lg text-muted-foreground">
-              <p className={`transition-all duration-1000 delay-200 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
-                <strong className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Krayons Group</strong> is your premier partner for 
-                <strong className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent"> digital marketing, integrated communication, and project-based solutions</strong>. 
-                We excel at forging strategic partnerships that effectively connect clients, facilitate seamless 
-                communication, and deliver exceptional project outcomes.
-              </p>
-              
-              <p className={`transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
-                Our expertise spans <strong className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">cutting-edge digital strategies</strong>, comprehensive 
-                communication across all channels, and tailored project management that consistently surpasses expectations. 
-                We don't just meet industry standards – <strong className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">we set them</strong>.
-              </p>
-              
-              <p className={`transition-all duration-1000 delay-400 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}>
-                Krayons is more than an affiliate marketing platform; we are <strong className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">architects 
-                of successful communication strategies</strong> and project-based collaborations. Our team comprises seasoned 
-                professionals who understand the intricacies of the digital landscape.
-              </p>
+              {aboutContent.content.split('\n\n').map((paragraph, index) => (
+                <p 
+                  key={index}
+                  className={`transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'}`}
+                  style={{ transitionDelay: `${(index + 2) * 100}ms` }}
+                  dangerouslySetInnerHTML={{ __html: renderStyledParagraph(paragraph) }}
+                />
+              ))}
             </div>
 
             {/* Enhanced Mission Statement with rainbow border */}

@@ -1,9 +1,9 @@
+This if my final Admin.tsx:
 import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Save, X, Calendar, ExternalLink, Home, Info, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, serverTimestamp, setDoc, getDoc } from 'firebase/firestore';
-import Login from '@/components/Login'; 
 
 // Firebase configuration using environment variables
 const firebaseConfig = {
@@ -54,26 +54,6 @@ interface ServicesContent {
 }
 
 const Admin = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  // Check authentication on component mount
-  useEffect(() => {
-    const authStatus = sessionStorage.getItem('admin_authenticated');
-    if (authStatus === 'true') {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  // Add logout function
-  const handleLogout = () => {
-    sessionStorage.removeItem('admin_authenticated');
-    setIsAuthenticated(false);
-  };
-
-  // Add login handler
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
   const [events, setEvents] = useState<Event[]>([]);
   const [heroContent, setHeroContent] = useState<HeroContent>({
     heading: "Your Premier Digital Marketing Partner For Strategic Growth",
@@ -378,10 +358,6 @@ const handleUpdateServicesContent = async () => {
     fetchData();
   }, []);
 
-  // Show login if not authenticated
-  if (!isAuthenticated) {
-    return <Login onLogin={handleLogin} />;
-  }
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center">
@@ -398,19 +374,9 @@ const handleUpdateServicesContent = async () => {
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="flex justify-between items-center mb-6">
-            <div></div> {/* Spacer */}
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Admin Dashboard
-            </h1>
-            <Button
-              onClick={handleLogout}
-              variant="outline"
-              className="text-red-600 border-red-600 hover:bg-red-50"
-            >
-              Logout
-            </Button>
-          </div>
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+            Admin Dashboard
+          </h1>
           <p className="text-gray-600 text-lg">Manage your website content and events</p>
         </div>
 
@@ -921,3 +887,8 @@ const handleUpdateServicesContent = async () => {
 };
 
 export default Admin;
+
+I want to implement login of Admin only access
+the email id: krayonsad@gmail.com
+And password: G@napti24
+Only these creds should be accepted as the admin. 
